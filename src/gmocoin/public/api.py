@@ -3,7 +3,7 @@ import requests
 import json
 
 from ..common.const import GMOConst
-from .dto import GetStatusResSchema, GetStatusRes
+from .dto import GetStatusResSchema, GetStatusRes, GetTickerResSchema, GetTickerRes, Symbol
 
 
 class Client:
@@ -16,9 +16,13 @@ class Client:
         return GetStatusResSchema().load(response.json())
         
 
-    def get_ticker(self):
-        pass
-    
+    def get_ticker(self, symbol:Symbol = None) -> GetTickerRes:
+        if symbol is None:
+            response = requests.get(GMOConst.END_POINT_PUBLIC + f'ticker')
+        else:
+            response = requests.get(GMOConst.END_POINT_PUBLIC + f'ticker?symbol={symbol.value}')
+        return GetTickerResSchema().load(response.json())
+
     def get_orderbooks(self):
         pass
     
