@@ -3,6 +3,7 @@ import requests
 import json
 
 from ..common.const import GMOConst
+from .dto import GetStatusResSchema, GetStatusRes
 
 
 class Client:
@@ -10,9 +11,10 @@ class Client:
     GMOCoinの公開APIクライアントクラスです。
     A public API client class for GMOCoin.
     '''
-    def get_status(self):
+    def get_status(self) -> GetStatusRes:
         response = requests.get(GMOConst.END_POINT_PUBLIC + 'status')
-        return response.json()
+        return GetStatusResSchema().load(response.json())
+        
 
     def get_ticker(self):
         pass
