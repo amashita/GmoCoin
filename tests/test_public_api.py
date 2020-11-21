@@ -49,3 +49,20 @@ def test_get_ticker(capfd):
     assert len(res.data) == len(symbol_list)
     for d in res.data:
         assert d.symbol in symbol_list
+
+def test_get_orderbooks(capfd):
+    client = Client()
+    res = client.get_orderbooks(Symbol.BTC_JPY)
+
+    assert type(res.status) is int
+    assert type(res.responsetime) is str
+    for ask in res.data.asks:
+        assert type(ask.price) is float
+        assert type(ask.size) is float
+
+    for bid in res.data.bids:
+        assert type(bid.price) is float
+        assert type(bid.size) is float
+
+    assert type(res.data.symbol) is Symbol
+    assert res.data.symbol == Symbol.BTC_JPY

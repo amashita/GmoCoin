@@ -3,6 +3,7 @@ from marshmallow import fields, pre_load
 from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
+from typing import List
 
 from . import BaseSchema, BaseResponse, BaseResponseSchema
 
@@ -87,3 +88,39 @@ class GetTickerRes(BaseResponse):
 class GetTickerResSchema(BaseResponseSchema):
     __model__ = GetTickerRes
     data = fields.Nested(GetTickerDataSchema, data_key='data', many=True)
+
+
+class OrderData:
+    def __init__(self, price: float, size: float) -> None:
+        self.price = price
+        self.size = size
+
+
+class OrderDataSchema(BaseSchema):
+    __model__ = OrderData
+    price = fields.Number(data_key='price')
+    size = fields.Number(data_key='size')
+
+class GetOrderBooksData:
+    def __init__(self, asks: List[OrderData], bids: List[OrderData], symbol: Symbol) -> None:
+        self.asks = asks
+        self.bids = bids
+        self.symbol = symbol
+
+
+class GetOrderBooksDataSchema(BaseSchema):
+    __model__ = GetOrderBooksData
+    asks = fields.Nested(OrderDataSchema, data_key='asks', many=True)
+    bids = fields.Nested(OrderDataSchema, data_key='bids', many=True)
+    symbol = EnumField(Symbol, data_key='symbol')
+
+
+class GetOrderBooksRes(BaseResponse):
+    def __init__(self, status: int, responsetime: str, data: GetOrderBooksData) -> None:
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class GetOrderBooksResSchema(BaseResponseSchema):
+    __model__ = GetOrderBooksRes
+    data = fields.Nested(GetOrderBooksDataSchema, data_key='data')
