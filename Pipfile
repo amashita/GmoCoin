@@ -11,6 +11,8 @@ autopep8 = "*"
 
 [packages]
 requests = "*"
+marshmallow = "*"
+marshmallow-enum = "*"
 
 [requires]
 python_version = "3.8"
