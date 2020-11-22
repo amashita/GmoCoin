@@ -8,6 +8,8 @@ pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
 autopep8 = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [packages]
 requests = "*"
