@@ -5,7 +5,8 @@ import json
 from ..common.const import GMOConst
 from .dto import GetStatusResSchema, GetStatusRes, \
     GetTickerResSchema, GetTickerRes, Symbol , \
-    GetOrderBooksResSchema, GetOrderBooksRes
+    GetOrderBooksResSchema, GetOrderBooksRes ,\
+    GetTradesResSchema, GetTradesRes
 
 
 class Client:
@@ -29,6 +30,6 @@ class Client:
         response = requests.get(GMOConst.END_POINT_PUBLIC + f'orderbooks?symbol={symbol.value}')
         return GetOrderBooksResSchema().load(response.json())
     
-    def get_trades(self):
-        pass
-    
+    def get_trades(self, symbol:Symbol, page:int=1, count:int=100) -> GetTradesRes:
+        response = requests.get(GMOConst.END_POINT_PUBLIC + f'trades?symbol={symbol.value}&page={page}&count={count}')
+        return GetTradesResSchema().load(response.json())

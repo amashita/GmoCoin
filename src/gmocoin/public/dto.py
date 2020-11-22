@@ -26,6 +26,10 @@ class Symbol(Enum):
     LTC_JPY = 'LTC_JPY'
     XRP_JPY = 'XRP_JPY'
 
+class SalesSide(Enum):
+    BUY = 'BUY'
+    SELL = 'SELL'
+
 
 class GetStatusData:
     def __init__(self, status: Status) -> None:
@@ -124,3 +128,54 @@ class GetOrderBooksRes(BaseResponse):
 class GetOrderBooksResSchema(BaseResponseSchema):
     __model__ = GetOrderBooksRes
     data = fields.Nested(GetOrderBooksDataSchema, data_key='data')
+
+
+class TradesPagenation:
+    def __init__(self, current_page: int, count: int) -> None:
+        self.current_page = current_page
+        self.count = count
+
+
+class TradesPagenationSchema(BaseSchema):
+    __model__ = TradesPagenation
+    current_page = fields.Int(data_key='currentPage')
+    count = fields.Int(data_key='count')
+
+
+class Trade:
+    def __init__(self, price: float, side: SalesSide, size: float, timestamp: str) -> None:
+        self.price = price
+        self.side = side
+        self.size = size
+        self.timestamp = timestamp
+
+
+class TradeSchema(BaseSchema):
+    __model__ = Trade
+    price = fields.Number(data_key='price')
+    side = EnumField(SalesSide, data_key='side')
+    size = fields.Number(data_key='size')
+    timestamp = fields.Str(data_key='timestamp')
+
+
+class GetTradesData:
+    def __init__(self, pagination: TradesPagenation, trades: List[Trade]) -> None:
+        self.pagination = pagination
+        self.trades = trades
+
+
+class GetTradesDataSchema(BaseSchema):
+    __model__ = GetTradesData
+    pagination = fields.Nested(TradesPagenationSchema, data_key='pagination')
+    trades = fields.Nested(TradeSchema, data_key='list', many=True)
+
+
+class GetTradesRes(BaseResponse):
+    def __init__(self, status: int, responsetime: str, data: GetOrderBooksData) -> None:
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class GetTradesResSchema(BaseResponseSchema):
+    __model__ = GetTradesRes
+    data = fields.Nested(GetTradesDataSchema, data_key='data')

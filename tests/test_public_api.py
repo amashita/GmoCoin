@@ -3,7 +3,8 @@ from pprint import pprint
 from enum import Enum
 
 from src.gmocoin.public.api import Client
-from src.gmocoin.public.dto import Status, Symbol
+from src.gmocoin.public.dto import Status, Symbol, SalesSide
+
 
 def test_get_status(capfd):
     client = Client()
@@ -50,6 +51,7 @@ def test_get_ticker(capfd):
     for d in res.data:
         assert d.symbol in symbol_list
 
+
 def test_get_orderbooks(capfd):
     client = Client()
     res = client.get_orderbooks(Symbol.BTC_JPY)
@@ -66,3 +68,22 @@ def test_get_orderbooks(capfd):
 
     assert type(res.data.symbol) is Symbol
     assert res.data.symbol == Symbol.BTC_JPY
+
+
+def test_get_trades(capfd):
+    client = Client()
+    res = client.get_trades(Symbol.BTC_JPY)
+
+    assert type(res.status) is int
+    assert type(res.responsetime) is str
+    assert type(res.data.pagination.current_page) is int
+    assert type(res.data.pagination.count) is int
+
+    for trade in res.data.trades:
+        assert type(trade.price) is float
+        assert type(trade.side) is SalesSide
+        assert type(trade.size) is float
+        assert type(trade.timestamp) is str
+
+    res = client.get_trades(Symbol.BTC_JPY, page=2, count=50)
+    assert len(res.data.trades) == 50
