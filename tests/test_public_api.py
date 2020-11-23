@@ -1,12 +1,15 @@
 #!python3
 from pprint import pprint
 from enum import Enum
+import time
 
 from src.gmocoin.public.api import Client
 from src.gmocoin.public.dto import Status, Symbol, SalesSide
+from .const import TestConst
 
 
 def test_get_status(capfd):
+    time.sleep(TestConst.API_CALL_INTERVAL)
     client = Client()
     res = client.get_status()
 
@@ -20,6 +23,7 @@ def test_get_status(capfd):
 
 
 def test_get_ticker(capfd):
+    time.sleep(TestConst.API_CALL_INTERVAL)
     client = Client()
     res = client.get_ticker(Symbol.BTC_JPY)
 
@@ -44,8 +48,8 @@ def test_get_ticker(capfd):
         print(d.timestamp)
         print(d.volume)
 
+    time.sleep(TestConst.API_CALL_INTERVAL)
     res = client.get_ticker()
-
     symbol_list = [s for s in Symbol]
     assert len(res.data) == len(symbol_list)
     for d in res.data:
@@ -53,6 +57,8 @@ def test_get_ticker(capfd):
 
 
 def test_get_orderbooks(capfd):
+
+    time.sleep(TestConst.API_CALL_INTERVAL)
     client = Client()
     res = client.get_orderbooks(Symbol.BTC_JPY)
 
@@ -71,6 +77,8 @@ def test_get_orderbooks(capfd):
 
 
 def test_get_trades(capfd):
+
+    time.sleep(TestConst.API_CALL_INTERVAL)
     client = Client()
     res = client.get_trades(Symbol.BTC_JPY)
 
@@ -85,5 +93,6 @@ def test_get_trades(capfd):
         assert type(trade.size) is float
         assert type(trade.timestamp) is str
 
+    time.sleep(TestConst.API_CALL_INTERVAL)
     res = client.get_trades(Symbol.BTC_JPY, page=2, count=50)
     assert len(res.data.trades) == 50
