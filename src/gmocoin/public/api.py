@@ -4,16 +4,22 @@ import json
 
 from ..common.const import GMOConst
 from ..common.exception import GmoCoinException
+from ..common.logging import get_logger, log
 from .dto import GetStatusResSchema, GetStatusRes, \
     GetTickerResSchema, GetTickerRes, Symbol , \
     GetOrderBooksResSchema, GetOrderBooksRes ,\
     GetTradesResSchema, GetTradesRes
 
 
+logger = get_logger()
+
+
 class Client:
     '''
     GMOCoinの公開APIクライアントクラスです。
     '''
+
+    @log(logger)
     def get_status(self) -> GetStatusRes:
         """
         取引所の稼動状態を取得します。
@@ -29,7 +35,7 @@ class Client:
             raise GmoCoinException(response.status_code)
         return GetStatusResSchema().load(response.json())
         
-
+    @log(logger)
     def get_ticker(self, symbol:Symbol = None) -> GetTickerRes:
         """
         指定した銘柄の最新レートを取得します。
@@ -51,6 +57,7 @@ class Client:
             raise GmoCoinException(response.status_code)
         return GetTickerResSchema().load(response.json())
 
+    @log(logger)
     def get_orderbooks(self, symbol:Symbol) -> GetOrderBooksRes:
         """
         指定した銘柄の板情報(snapshot)を取得します。
@@ -67,6 +74,7 @@ class Client:
             raise GmoCoinException(response.status_code)
         return GetOrderBooksResSchema().load(response.json())
     
+    @log(logger)
     def get_trades(self, symbol:Symbol, page:int=1, count:int=100) -> GetTradesRes:
         """
         指定した銘柄の板情報(snapshot)を取得します。
