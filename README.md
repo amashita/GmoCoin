@@ -2,19 +2,68 @@
 
 # GmoCoin
 
-## run test
+## Description
+
+GMOコインのAPIラッパーです。
+
+### API仕様
+
+https://api.coin.z.com/docs/#outline
+
+## Requirement
+
+* Python 3.6
+
+## Installation
+
+```
+pip install GmoCoin
+```
+
+## Usage
+
+[APIラッパーリファレンス](https://amashita.github.io/GmoCoin/)
+
+## Development
+
+### Launch gitpod
+
+[gitpod](https://gitpod.io/#https://github.com/amashita/GmoCoin)
+
+### run test
 
 ```
 pipenv run pytest
 ```
 
-## GenerateDoc
+### GenerateDoc
 
 ```
 pipenv run sphinx-apidoc -f -o docs/source src/gmocoin
 pipenv run sphinx-build -b html docs/source docs/build
 ```
 
-# API-Spec
+### upload pypi
 
-https://api.coin.z.com/docs/#outline
+'''
+python setup.py sdist --formats=zip
+twine upload dist/*
+twine upload -r pypitest dist/*
+'''
+
+'''
+twine upload -r pypitest dist/*
+'''
+
+'''
+twine upload dist/*
+'''
+
+
+## License
+
+[Apache License Version 2.0](LICENSE)
+
+## Author
+
+amashita

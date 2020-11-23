@@ -10,6 +10,8 @@ flake8 = "*"
 autopep8 = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 requests = "*"
