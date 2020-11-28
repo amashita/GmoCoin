@@ -9,7 +9,7 @@ from datetime import datetime
 from ..common.const import GMOConst
 from ..common.exception import GmoCoinException
 from ..common.logging import get_logger, log
-from .dto import GetMarginResSchema, GetMarginRes
+from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes
 
 
 logger = get_logger()
@@ -55,6 +55,27 @@ class Client:
         if response.status_code != 200:
             raise GmoCoinException(response.status_code)
         return GetMarginResSchema().load(response.json())
+
+    @log(logger)
+    def get_assets(self) -> GetAssetsRes:
+        """
+        資産残高を取得します。
+
+        Args:
+            なし
+
+        Returns:
+            GetAssetsRes
+        """
+
+        path = '/v1/account/assets'
+
+        headers = self._create_header(method='GET', path=path)
+
+        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers)
+        if response.status_code != 200:
+            raise GmoCoinException(response.status_code)
+        return GetAssetsResSchema().load(response.json())
 
     @log(logger)
     def _create_header(self, method :str, path :str) -> dict:

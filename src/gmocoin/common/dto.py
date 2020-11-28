@@ -29,6 +29,22 @@ class Symbol(Enum):
     XRP_JPY = 'XRP_JPY'
 
 
+class AssetSymbol(Enum):
+    """
+    資産銘柄種別を示します。
+    """
+    BTC = 'BTC'
+    ETH = 'ETH'
+    BCH = 'BCH'
+    LTC = 'LTC'
+    XRP = 'XRP'
+    JPY = 'JPY'
+    XEM = 'XEM'
+    XLM = 'XLM'
+    BAT = 'BAT'
+    OMG = 'OMG'
+
+
 class SalesSide(Enum):
     """
     売買種別を示します。

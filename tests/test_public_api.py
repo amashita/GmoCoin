@@ -2,9 +2,10 @@
 from pprint import pprint
 from enum import Enum
 import time
+from decimal import Decimal
 
 from src.gmocoin.public.api import Client
-from src.gmocoin.public.dto import Status, Symbol, SalesSide
+from src.gmocoin.common.dto import Status, Symbol, SalesSide
 from .const import TestConst
 
 
@@ -30,14 +31,14 @@ def test_get_ticker(capfd):
     assert type(res.status) is int
     assert type(res.responsetime) is str
     for d in res.data:
-        assert type(d.ask) is float
-        assert type(d.bid) is float
-        assert type(d.high) is float
-        assert type(d.last) is float
-        assert type(d.low) is float
+        assert type(d.ask) is Decimal
+        assert type(d.bid) is Decimal
+        assert type(d.high) is Decimal
+        assert type(d.last) is Decimal
+        assert type(d.low) is Decimal
         assert type(d.symbol) is Symbol
         assert type(d.timestamp) is str
-        assert type(d.volume) is float
+        assert type(d.volume) is Decimal
         
         print(d.ask)
         print(d.bid)
@@ -65,12 +66,12 @@ def test_get_orderbooks(capfd):
     assert type(res.status) is int
     assert type(res.responsetime) is str
     for ask in res.data.asks:
-        assert type(ask.price) is float
-        assert type(ask.size) is float
+        assert type(ask.price) is Decimal
+        assert type(ask.size) is Decimal
 
     for bid in res.data.bids:
-        assert type(bid.price) is float
-        assert type(bid.size) is float
+        assert type(bid.price) is Decimal
+        assert type(bid.size) is Decimal
 
     assert type(res.data.symbol) is Symbol
     assert res.data.symbol == Symbol.BTC_JPY
@@ -88,9 +89,9 @@ def test_get_trades(capfd):
     assert type(res.data.pagination.count) is int
 
     for trade in res.data.trades:
-        assert type(trade.price) is float
+        assert type(trade.price) is Decimal
         assert type(trade.side) is SalesSide
-        assert type(trade.size) is float
+        assert type(trade.size) is Decimal
         assert type(trade.timestamp) is str
 
     time.sleep(TestConst.API_CALL_INTERVAL)
