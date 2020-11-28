@@ -16,7 +16,7 @@ logger = get_logger()
 
 class Client:
     '''
-    GMOCoinの公開APIクライアントクラスです。
+    GMOCoinのパブリックAPIクライアントクラスです。
     '''
 
     @log(logger)

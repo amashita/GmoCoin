@@ -18,3 +18,4 @@ class GMOConst(metaclass=ConstMeta):
     '''
     END_POINT = 'https://api.coin.z.com/'
     END_POINT_PUBLIC = END_POINT+'public/v1/'
+    END_POINT_PRIVATE = END_POINT+'private'

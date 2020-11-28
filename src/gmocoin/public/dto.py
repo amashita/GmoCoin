@@ -4,40 +4,9 @@ from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
 from typing import List
+from decimal import Decimal
 
-from . import BaseSchema, BaseResponse, BaseResponseSchema
-
-
-class Status(Enum):
-    """
-    GMOサーバの状態を示します。
-    """
-    MAINTENANCE = 'MAINTENANCE'
-    PREOPEN = 'PREOPEN'
-    OPEN = 'OPEN'
-
-
-class Symbol(Enum):
-    """
-    銘柄種別を示します。
-    """
-    BTC = 'BTC'
-    ETH = 'ETH'
-    BCH = 'BCH'
-    LTC = 'LTC'
-    XRP = 'XRP'
-    BTC_JPY = 'BTC_JPY'
-    ETH_JPY = 'ETH_JPY'
-    BCH_JPY = 'BCH_JPY'
-    LTC_JPY = 'LTC_JPY'
-    XRP_JPY = 'XRP_JPY'
-
-class SalesSide(Enum):
-    """
-    売買種別を示します。
-    """
-    BUY = 'BUY'
-    SELL = 'SELL'
+from ..common.dto import BaseSchema, BaseResponse, BaseResponseSchema, Status, Symbol, SalesSide
 
 
 class GetStatusData:
@@ -96,7 +65,7 @@ class GetTickerData:
     """
     銘柄最新レートデータクラスです。
     """
-    def __init__(self, symbol: Symbol, timestamp: str, volume: float, ask: float, bid: float, high: float, last: float, low: float) -> None:
+    def __init__(self, symbol: Symbol, timestamp: str, volume: Decimal, ask: Decimal, bid: Decimal, high: Decimal, last: Decimal, low: Decimal) -> None:
         """
         コンストラクタです。
 
@@ -183,7 +152,7 @@ class OrderData:
     """
     注文データクラスです。
     """
-    def __init__(self, price: float, size: float) -> None:
+    def __init__(self, price: Decimal, size: Decimal) -> None:
         """
         コンストラクタです。
 
@@ -295,7 +264,7 @@ class Trade:
     """
     取引データクラスです。
     """
-    def __init__(self, price: float, side: SalesSide, size: float, timestamp: str) -> None:
+    def __init__(self, price: Decimal, side: SalesSide, size: Decimal, timestamp: str) -> None:
         """
         コンストラクタです。
 
