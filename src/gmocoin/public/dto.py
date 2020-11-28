@@ -94,14 +94,14 @@ class GetTickerDataSchema(BaseSchema):
     銘柄最新レートデータスキーマクラスです。
     """
     __model__ = GetTickerData
-    ask = fields.Number(data_key='ask')
-    bid = fields.Number(data_key='bid')
-    high = fields.Number(data_key='high')
-    last = fields.Number(data_key='last')
-    low = fields.Number(data_key='low')
+    ask = fields.Decimal(data_key='ask')
+    bid = fields.Decimal(data_key='bid')
+    high = fields.Decimal(data_key='high')
+    last = fields.Decimal(data_key='last')
+    low = fields.Decimal(data_key='low')
     symbol = EnumField(Symbol, data_key='symbol')
     timestamp = fields.Str(data_key='timestamp')
-    volume = fields.Number(data_key='volume')
+    volume = fields.Decimal(data_key='volume')
 
     @pre_load
     def convert_none_to_zero(self, in_data, **kwargs):
@@ -171,8 +171,8 @@ class OrderDataSchema(BaseSchema):
     注文データスキーマクラスです。
     """
     __model__ = OrderData
-    price = fields.Number(data_key='price')
-    size = fields.Number(data_key='size')
+    price = fields.Decimal(data_key='price')
+    size = fields.Decimal(data_key='size')
 
 class GetOrderBooksData:
     """
@@ -289,9 +289,9 @@ class TradeSchema(BaseSchema):
     取引データスキーマクラスです。
     """
     __model__ = Trade
-    price = fields.Number(data_key='price')
+    price = fields.Decimal(data_key='price')
     side = EnumField(SalesSide, data_key='side')
-    size = fields.Number(data_key='size')
+    size = fields.Decimal(data_key='size')
     timestamp = fields.Str(data_key='timestamp')
 
 
