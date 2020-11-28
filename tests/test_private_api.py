@@ -6,7 +6,8 @@ import json
 from decimal import Decimal
 
 from src.gmocoin.private.api import Client
-from src.gmocoin.common.dto import AssetSymbol
+from src.gmocoin.common.dto import AssetSymbol, Symbol, SalesSide, OrderType, ExecutionType, SettleType, \
+    OrderStatus, TimeInForce
 from .const import TestConst
 
 
@@ -56,3 +57,50 @@ class Test:
             print(d.available)
             print(d.conversion_rate)
             print(d.symbol)
+
+    def test_get_active_orders(self):
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
+        res = client.get_active_orders(symbol=Symbol.XRP_JPY)
+
+        assert type(res.status) is int
+        assert type(res.responsetime) is str
+        assert type(res.data.pagination.current_page) is int
+        assert type(res.data.pagination.count) is int
+        for o in res.data.active_orders:
+            assert type(o.root_order_id) is int
+            assert type(o.order_id) is int
+            assert type(o.symbol) is Symbol
+            assert type(o.side) is SalesSide
+            assert type(o.order_type) is OrderType
+            assert type(o.execution_type) is ExecutionType
+            assert type(o.settle_type) is SettleType
+            assert type(o.size) is Decimal
+            assert type(o.executed_size) is Decimal
+            assert type(o.price) is Decimal
+            assert type(o.losscut_price) is Decimal
+            assert type(o.status) is OrderStatus
+            assert type(o.time_in_force) is TimeInForce
+            assert type(o.timestamp) is str
+
+        print(res.status)
+        print(res.responsetime)
+        print(res.data.pagination.current_page)
+        print(res.data.pagination.count)
+        for o in res.data.active_orders:
+            print(o.root_order_id)
+            print(o.order_id)
+            print(o.symbol)
+            print(o.side)
+            print(o.order_type)
+            print(o.execution_type)
+            print(o.settle_type)
+            print(o.size)
+            print(o.executed_size)
+            print(o.price)
+            print(o.losscut_price)
+            print(o.status)
+            print(o.time_in_force)
+            print(o.timestamp)
+
+        client.get_active_orders(symbol=Symbol.BTC)

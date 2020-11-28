@@ -32,6 +32,17 @@ pip install GmoCoin
 
 ### run test
 
+* tests/api_conf.jsonを作成する
+
+```
+{
+    "API_KEY":"AAA",
+    "SECRET_KEY":"BBB"
+}
+```
+
+* テストコマンド実行
+
 ```
 pipenv run pytest
 ```
@@ -45,19 +56,19 @@ pipenv run sphinx-build -b html docs/source docs/build
 
 ### upload pypi
 
-'''
+```
 python setup.py sdist --formats=zip
 twine upload dist/*
 twine upload -r pypitest dist/*
-'''
+```
 
-'''
+```
 twine upload -r pypitest dist/*
-'''
+```
 
-'''
+```
 twine upload dist/*
-'''
+```
 
 
 ## License
