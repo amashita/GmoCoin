@@ -53,6 +53,53 @@ class SalesSide(Enum):
     SELL = 'SELL'
 
 
+class OrderType(Enum):
+    """
+    取引区分を示します。
+    """
+    NORMAL = 'NORMAL'
+    LOSSCUT = 'LOSSCUT'
+
+
+class ExecutionType(Enum):
+    """
+    注文タイプを示します。
+    """
+    MARKET = 'MARKET'
+    LIMIT = 'LIMIT'
+    STOP = 'STOP'
+
+
+class SettleType(Enum):
+    """
+    決済区分を示します。
+    """
+    OPEN = 'OPEN'
+    CLOSE = 'CLOSE'
+
+class OrderStatus(Enum):
+    """
+    注文ステータスを示します。
+    """
+    WAITING = 'WAITING'
+    ORDERED = 'ORDERED'
+    MODIFYING = 'MODIFYING'
+    CANCELLING = 'CANCELLING'
+    CANCELED = 'CANCELED'
+    EXECUTED = 'EXECUTED'
+    EXPIRED = 'EXPIRED'
+
+
+class TimeInForce(Enum):
+    """
+    執行数量条件を示します。
+    """
+    FAK = 'FAK'
+    FAS = 'FAS'
+    FOK = 'FOK'
+    SOK = 'SOK'
+
+
 class BaseSchema(Schema):
     """
     ベーススキーマクラスです。

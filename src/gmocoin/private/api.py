@@ -9,7 +9,9 @@ from datetime import datetime
 from ..common.const import GMOConst
 from ..common.exception import GmoCoinException
 from ..common.logging import get_logger, log
-from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes
+from ..common.dto import Symbol
+from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
+    GetActiveOrdersResSchema, GetActiveOrdersRes
 
 
 logger = get_logger()
@@ -78,6 +80,38 @@ class Client:
         return GetAssetsResSchema().load(response.json())
 
     @log(logger)
+    def get_active_orders(self, symbol:Symbol, page:int=1, count:int=100) -> GetActiveOrdersRes:
+        """
+        有効注文一覧を取得します。
+        対象: 現物取引、レバレッジ取引。
+
+        Args:
+            symbol:
+                BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            page:
+                取得対象ページ: 指定しない場合は1を指定したとして動作する。
+            count:
+                1ページ当りの取得件数: 指定しない場合は100(最大値)を指定したとして動作する。
+
+        Returns:
+            GetActiveOrdersRes
+        """
+
+        path = '/v1/activeOrders'
+
+        headers = self._create_header(method='GET', path=path)
+        parameters = {
+            "symbol": symbol.value,
+            "page": page,
+            "count": count
+        }
+
+        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+        if response.status_code != 200:
+            raise GmoCoinException(response.status_code)
+        return GetActiveOrdersResSchema().load(response.json())
+
+    @log(logger)
     def _create_header(self, method :str, path :str) -> dict:
         """
         ヘッダーを生成します。
@@ -92,14 +126,6 @@ class Client:
             header
         """
         timestamp = '{0}000'.format(int(time.mktime(datetime.now().timetuple())))
-
-        # text = timestamp + method + path
-        # sign = hmac.new(bytes('OPxTXz9Goy2chqhTZ6mGK++Ml7tYF3alRrOUHt5NxChZpuJPTjorQQq5d4SbETP1'.encode('ascii')), bytes(text.encode('ascii')), hashlib.sha256).hexdigest()
-        # headers = {
-        #     "API-KEY": 'PpYQR24/rhlRAE7/SdDS5+0gs9TMpEzg',
-        #     "API-TIMESTAMP": timestamp,
-        #     "API-SIGN": sign
-        # }
 
         text = timestamp + method + path
         sign = hmac.new(bytes(self._secret_key.encode('ascii')), bytes(text.encode('ascii')), hashlib.sha256).hexdigest()
