@@ -11,7 +11,7 @@ from ..common.exception import GmoCoinException
 from ..common.logging import get_logger, log
 from ..common.dto import Symbol
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
-    GetActiveOrdersResSchema, GetActiveOrdersRes
+    GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes
 
 
 logger = get_logger()
@@ -110,6 +110,34 @@ class Client:
         if response.status_code != 200:
             raise GmoCoinException(response.status_code)
         return GetActiveOrdersResSchema().load(response.json())
+
+    @log(logger)
+    def get_position_summary(self, symbol:Symbol) -> GetPositionSummaryRes:
+        """
+        建玉サマリーを取得します。
+        対象: レバレッジ取引
+
+        銘柄ごと、売買区分(買/売)ごとの建玉サマリー取得ができます。
+
+        Args:
+            symbol:
+                BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+
+        Returns:
+            GetPositionSummaryRes
+        """
+
+        path = '/v1/positionSummary'
+
+        headers = self._create_header(method='GET', path=path)
+        parameters = {
+            "symbol": symbol.value
+        }
+
+        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+        if response.status_code != 200:
+            raise GmoCoinException(response.status_code)
+        return GetPositionSummaryResSchema().load(response.json())
 
     @log(logger)
     def _create_header(self, method :str, path :str) -> dict:
