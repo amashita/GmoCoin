@@ -1,5 +1,5 @@
 #!python3
-from marshmallow import fields, pre_load, post_load
+from marshmallow import fields, pre_load
 from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
