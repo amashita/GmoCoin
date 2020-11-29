@@ -295,3 +295,116 @@ class GetActiveOrdersResSchema(BaseResponseSchema):
     """
     __model__ = GetActiveOrdersRes
     data = fields.Nested(GetActiveOrdersDataSchema, data_key='data')
+
+
+class PositionSummary:
+    """
+    建玉サマリークラスです。
+    """
+    def __init__(self, average_position_rate: Decimal, position_loss_gain: Decimal, side: SalesSide,
+                 sum_order_quantity: Decimal, sum_position_quantity: Decimal, symbol: Symbol) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            average_position_rate:
+                平均建玉レート
+            position_loss_gain:
+                評価損益
+            side:
+                売買区分: BUY SELL
+            sum_order_quantity:
+                発注中数量
+            sum_position_quantity:
+                建玉数量
+            symbol:
+                銘柄名: BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+        """
+        self.average_position_rate = average_position_rate
+        self.position_loss_gain = position_loss_gain
+        self.side = side
+        self.sum_order_quantity = sum_order_quantity
+        self.sum_position_quantity = sum_position_quantity
+        self.symbol = symbol
+
+
+class PositionSummarySchema(BaseSchema):
+    """
+    建玉サマリースキーマクラスです。
+    """
+    __model__ = PositionSummary
+    average_position_rate = fields.Decimal(data_key='averagePositionRate')
+    position_loss_gain = fields.Decimal(data_key='positionLossGain')
+    side = EnumField(SalesSide, data_key='side')
+    sum_order_quantity = fields.Decimal(data_key='sumOrderQuantity')
+    sum_position_quantity = fields.Decimal(data_key='sumPositionQuantity')
+    symbol = EnumField(SalesSide, data_key='symbol')
+
+
+class GetPositionSummaryData:
+    """
+    建玉サマリーデータクラスです。
+    """
+    def __init__(self, position_summarys: List[PositionSummary]=[]) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            pagination:
+                ページングを設定します。
+            positions:
+                建玉サマリー一覧リストを設定します。
+        """
+        self.position_summarys = position_summarys
+
+
+class GetPositionSummaryDataSchema(BaseSchema):
+    """
+    建玉サマリーデータスキーマクラスです。
+    """
+    __model__ = GetPositionSummaryData
+    position_summarys = fields.Nested(PositionSummary, data_key='list', many=True, allow_none=True)
+
+    @pre_load
+    def convert_empty_to_none(self, in_data, **kwargs):
+        """
+        空配列をNoneに変換する関数です。
+
+        Args:
+            in_data:
+            kwargs:
+
+        Returns:
+            in_data
+        """
+        if len(in_data['list']) == 0:
+            in_data['list'] = None
+        return in_data
+
+
+class GetPositionSummaryRes(BaseResponse):
+    """
+    建玉サマリーレスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: str, data: GetActiveOrdersData) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime:
+                レスポンスタイムを設定します。
+            data:
+                レスポンスデータを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class GetPositionSummaryResSchema(BaseResponseSchema):
+    """
+    建玉サマリーレスポンススキーマクラスです。
+    """
+    __model__ = GetPositionSummaryRes
+    data = fields.Nested(GetPositionSummaryDataSchema, data_key='data')

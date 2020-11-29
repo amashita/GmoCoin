@@ -104,3 +104,33 @@ class Test:
             print(o.timestamp)
 
         client.get_active_orders(symbol=Symbol.BTC)
+
+
+    def test_get_position_summary(self):
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
+        res = client.get_position_summary(symbol=Symbol.XRP_JPY)
+
+        assert type(res.status) is int
+        assert type(res.responsetime) is str
+        if res.data.position_summarys is not None:
+            for p in res.data.position_summarys:
+                assert type(p.average_position_rate) is Decimal
+                assert type(p.position_loss_gain) is Decimal
+                assert type(p.side) is SalesSide
+                assert type(p.sum_order_quantity) is Decimal
+                assert type(p.sum_position_quantity) is Decimal
+                assert type(p.symbol) is Symbol
+
+        print(res.status)
+        print(res.responsetime)
+        if res.data.position_summarys is not None:
+            for o in res.data.position_summarys:
+                print(p.average_position_rate)
+                print(p.position_loss_gain)
+                print(p.side)
+                print(p.sum_order_quantity)
+                print(p.sum_position_quantity)
+                print(p.symbol)
+
+        client.get_position_summary(symbol=Symbol.LTC_JPY)
