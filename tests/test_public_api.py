@@ -97,3 +97,11 @@ def test_get_trades(capfd):
     time.sleep(TestConst.API_CALL_INTERVAL)
     res = client.get_trades(Symbol.BTC_JPY, page=2, count=50)
     assert len(res.data.trades) == 50
+
+
+def test_get_trades_loop(capfd):
+    client = Client()
+    for i in range(10):
+        res = client.get_trades(Symbol.BTC_JPY)
+        print(res.status)
+

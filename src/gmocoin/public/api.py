@@ -2,12 +2,12 @@
 import requests
 import json
 
+from ..common.annotation import post_request
 from ..common.const import GMOConst
-from ..common.exception import GmoCoinException
 from ..common.logging import get_logger, log
 from .dto import GetStatusResSchema, GetStatusRes, \
     GetTickerResSchema, GetTickerRes, Symbol , \
-    GetOrderBooksResSchema, GetOrderBooksRes ,\
+    GetOrderBooksResSchema, GetOrderBooksRes, \
     GetTradesResSchema, GetTradesRes
 
 
@@ -20,6 +20,7 @@ class Client:
     '''
 
     @log(logger)
+    @post_request(GetStatusResSchema)
     def get_status(self) -> GetStatusRes:
         """
         取引所の稼動状態を取得します。
@@ -30,12 +31,10 @@ class Client:
         Returns:
             GetStatusRes
         """
-        response = requests.get(GMOConst.END_POINT_PUBLIC + 'status')
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetStatusResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PUBLIC + 'status')
         
     @log(logger)
+    @post_request(GetTickerResSchema)
     def get_ticker(self, symbol:Symbol = None) -> GetTickerRes:
         """
         指定した銘柄の最新レートを取得します。
@@ -50,14 +49,12 @@ class Client:
             GetTickerRes
         """
         if symbol is None:
-            response = requests.get(GMOConst.END_POINT_PUBLIC + f'ticker')
+            return requests.get(GMOConst.END_POINT_PUBLIC + f'ticker')
         else:
-            response = requests.get(GMOConst.END_POINT_PUBLIC + f'ticker?symbol={symbol.value}')
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetTickerResSchema().load(response.json())
+            return requests.get(GMOConst.END_POINT_PUBLIC + f'ticker?symbol={symbol.value}')
 
     @log(logger)
+    @post_request(GetOrderBooksResSchema)
     def get_orderbooks(self, symbol:Symbol) -> GetOrderBooksRes:
         """
         指定した銘柄の板情報(snapshot)を取得します。
@@ -69,12 +66,10 @@ class Client:
         Returns:
             GetOrderBooksRes
         """
-        response = requests.get(GMOConst.END_POINT_PUBLIC + f'orderbooks?symbol={symbol.value}')
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetOrderBooksResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PUBLIC + f'orderbooks?symbol={symbol.value}')
     
     @log(logger)
+    @post_request(GetTradesResSchema)
     def get_trades(self, symbol:Symbol, page:int=1, count:int=100) -> GetTradesRes:
         """
         指定した銘柄の板情報(snapshot)を取得します。
@@ -92,7 +87,4 @@ class Client:
         Returns:
             GetTradesRes
         """
-        response = requests.get(GMOConst.END_POINT_PUBLIC + f'trades?symbol={symbol.value}&page={page}&count={count}')
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetTradesResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PUBLIC + f'trades?symbol={symbol.value}&page={page}&count={count}')
