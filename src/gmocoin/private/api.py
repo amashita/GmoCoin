@@ -6,8 +6,8 @@ import hashlib
 import time
 from datetime import datetime
 
+from ..common.annotation import post_request
 from ..common.const import GMOConst
-from ..common.exception import GmoCoinException
 from ..common.logging import get_logger, log
 from ..common.dto import Symbol
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
@@ -38,6 +38,7 @@ class Client:
         self._secret_key = secret_key
 
     @log(logger)
+    @post_request(GetMarginResSchema)
     def get_margin(self) -> GetMarginRes:
         """
         余力情報を取得します。
@@ -53,12 +54,10 @@ class Client:
 
         headers = self._create_header(method='GET', path=path)
 
-        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers)
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetMarginResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers)
 
     @log(logger)
+    @post_request(GetAssetsResSchema)
     def get_assets(self) -> GetAssetsRes:
         """
         資産残高を取得します。
@@ -74,12 +73,10 @@ class Client:
 
         headers = self._create_header(method='GET', path=path)
 
-        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers)
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetAssetsResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers)
 
     @log(logger)
+    @post_request(GetActiveOrdersResSchema)
     def get_active_orders(self, symbol:Symbol, page:int=1, count:int=100) -> GetActiveOrdersRes:
         """
         有効注文一覧を取得します。
@@ -106,12 +103,10 @@ class Client:
             "count": count
         }
 
-        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetActiveOrdersResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
 
     @log(logger)
+    @post_request(GetPositionSummaryResSchema)
     def get_position_summary(self, symbol:Symbol) -> GetPositionSummaryRes:
         """
         建玉サマリーを取得します。
@@ -134,10 +129,8 @@ class Client:
             "symbol": symbol.value
         }
 
-        response = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
-        if response.status_code != 200:
-            raise GmoCoinException(response.status_code)
-        return GetPositionSummaryResSchema().load(response.json())
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+
 
     @log(logger)
     def _create_header(self, method :str, path :str) -> dict:
