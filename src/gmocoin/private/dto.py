@@ -392,3 +392,31 @@ class GetPositionSummaryResSchema(BaseResponseSchema):
     """
     __model__ = GetPositionSummaryRes
     data = fields.Nested(GetPositionSummaryDataSchema, data_key='data')
+
+
+class PostOrderRes(BaseResponse):
+    """
+    新規注文レスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: str, data: int) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime:
+                レスポンスタイムを設定します。
+            data:
+                レスポンスデータを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class PostOrderResSchema(BaseResponseSchema):
+    """
+    新規注文レスポンススキーマクラスです。
+    """
+    __model__ = GetPositionSummaryRes
+    data = fields.Int(data_key='data')

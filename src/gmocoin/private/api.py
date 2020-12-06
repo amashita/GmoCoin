@@ -9,9 +9,10 @@ from datetime import datetime
 from ..common.annotation import post_request
 from ..common.const import GMOConst
 from ..common.logging import get_logger, log
-from ..common.dto import Symbol, BaseResponseSchema , BaseResponse
+from ..common.dto import Symbol, SalesSide, ExecutionType, TimeInForce, BaseResponseSchema , BaseResponse
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
-    GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes
+    GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes,\
+    PostOrderResSchema, PostOrderRes
 
 
 logger = get_logger()
@@ -129,10 +130,60 @@ class Client:
             "symbol": symbol.value
         }
 
-        res = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
-        import pprint
-        pprint.pprint(res.json())
-        return res
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+
+    @log(logger)
+    @post_request(PostOrderResSchema)
+    def order(self, symbol:Symbol, side:SalesSide, execution_type:ExecutionType, time_in_force: TimeInForce,
+              size:str, price:str='0', losscut_price:str='0') -> PostOrderRes:
+        """
+        新規注文をします。
+        対象: 現物取引、レバレッジ取引
+
+        現物取引: 買/売注文
+        レバレッジ取引: 新規の買/売注文
+
+        Args:
+            symbol:
+                BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            side:
+                BUY SELL
+            execution_type:
+                MARKET LIMIT STOP
+            time_in_force:
+                Optional	FAK ( MARKET STOPの場合のみ設定可能 )
+                FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+                *指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+                SOKは現物取引（全銘柄）とレバレッジ取引(BTC_JPY)の場合のみ指定可能です。
+            price:
+                *executionTypeによる
+                LIMIT STOP の場合は必須、 MARKET の場合は不要。
+            losscut_price:
+            	レバレッジ取引で、executionTypeが LIMIT または STOP の場合のみ設定可能。
+            size:
+                数量
+
+        Returns:
+            PostOrderRes
+        """
+
+        path = '/v1/order'
+
+        req_body = {
+            "symbol": symbol.value,
+            "side": side.value,
+            "executionType": execution_type.value,
+            "timeInForce": time_in_force.value,
+            "size": size
+        }
+        if execution_type != ExecutionType.MARKET:
+            req_body["price"] = price
+        if losscut_price != '0' and execution_type != ExecutionType.MARKET and self._is_leverage(symbol):
+            req_body["losscutPrice"] = losscut_price
+
+        headers = self._create_header(method='POST', path=path, req_body=req_body)
+
+        return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
 
     @log(logger)
     @post_request(BaseResponseSchema)
@@ -149,17 +200,16 @@ class Client:
         """
 
         path = '/v1/cancelOrder'
-
-        headers = self._create_header(method='POST', path=path)
         req_body = {
             "orderId": order_id
         }
 
+        headers = self._create_header(method='POST', path=path, req_body=req_body)
+
         return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
 
-
     @log(logger)
-    def _create_header(self, method :str, path :str) -> dict:
+    def _create_header(self, method :str, path :str, req_body:[] = None) -> dict:
         """
         ヘッダーを生成します。
 
@@ -174,7 +224,11 @@ class Client:
         """
         timestamp = '{0}000'.format(int(time.mktime(datetime.now().timetuple())))
 
-        text = timestamp + method + path
+        if req_body is None:
+            text = timestamp + method + path
+        else:
+            text = timestamp + method + path + json.dumps(req_body)
+
         sign = hmac.new(bytes(self._secret_key.encode('ascii')), bytes(text.encode('ascii')), hashlib.sha256).hexdigest()
         headers = {
             "API-KEY": self._api_key,
@@ -183,3 +237,22 @@ class Client:
         }
 
         return headers
+
+    @log(logger)
+    def _is_leverage(self, symbol: Symbol) -> bool:
+        """
+        取引種別がレバレッジ取引かどうかを返却します。
+
+        Args:
+            symbol:
+                取引種別。
+
+        Returns:
+            bool
+        """
+
+        return (symbol == Symbol.BTC_JPY or 
+                symbol == Symbol.ETH_JPY or 
+                symbol == Symbol.BCH_JPY or 
+                symbol == Symbol.LTC_JPY or 
+                symbol == Symbol.XRP_JPY)
