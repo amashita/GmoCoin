@@ -1,5 +1,5 @@
 #!python3
-from marshmallow import fields, pre_load
+from marshmallow import fields
 from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
@@ -338,7 +338,7 @@ class PositionSummarySchema(BaseSchema):
     side = EnumField(SalesSide, data_key='side')
     sum_order_quantity = fields.Decimal(data_key='sumOrderQuantity')
     sum_position_quantity = fields.Decimal(data_key='sumPositionQuantity')
-    symbol = EnumField(SalesSide, data_key='symbol')
+    symbol = EnumField(Symbol, data_key='symbol')
 
 
 class GetPositionSummaryData:
@@ -363,23 +363,7 @@ class GetPositionSummaryDataSchema(BaseSchema):
     建玉サマリーデータスキーマクラスです。
     """
     __model__ = GetPositionSummaryData
-    position_summarys = fields.Nested(PositionSummary, data_key='list', many=True, allow_none=True)
-
-    @pre_load
-    def convert_empty_to_none(self, in_data, **kwargs):
-        """
-        空配列をNoneに変換する関数です。
-
-        Args:
-            in_data:
-            kwargs:
-
-        Returns:
-            in_data
-        """
-        if len(in_data['list']) == 0:
-            in_data['list'] = None
-        return in_data
+    position_summarys = fields.Nested(PositionSummarySchema, data_key='list', many=True, allow_none=True)
 
 
 class GetPositionSummaryRes(BaseResponse):
