@@ -3,6 +3,7 @@ from functools import wraps
 from time import sleep
 
 from .exception import GmoCoinException
+from .dto import ErrorResponseResSchema
 
 
 def post_request(Schema, interval: float=0.1, retry_count: int=10):
@@ -54,6 +55,10 @@ def post_request(Schema, interval: float=0.1, retry_count: int=10):
                     sleep(interval)
                 else:
                     return Schema().load(res_json)
+
+            if 'messages' in res_json:
+                raise GmoCoinException(ret.status_code, 
+                                       messageg=ErrorResponseResSchema().load(res_json))
 
         return wrapper
     return _decorator

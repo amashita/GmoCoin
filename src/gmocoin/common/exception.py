@@ -1,4 +1,5 @@
 #!python3
+from .dto import ErrorResponse
 
 
 class GmoCoinException(Exception):
@@ -6,7 +7,7 @@ class GmoCoinException(Exception):
     例外クラスです。
     """
 
-    def __init__(self, status_code: int, messageg: str=''):
+    def __init__(self, status_code: int, messageg: ErrorResponse=None):
         """
         コンストラクタです。
 

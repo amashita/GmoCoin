@@ -1,4 +1,5 @@
 #!python3
+from typing import List
 from enum import Enum
 from marshmallow import Schema, fields, post_load
 # from datetime import datetime
@@ -151,3 +152,58 @@ class BaseResponseSchema(BaseSchema):
     status = fields.Int(data_key='status')
     # responsetime = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='responsetime')
     responsetime = fields.Str(data_key='responsetime')
+
+
+class Message:
+    """
+    メッセージクラスです。
+    """
+    def __init__(self, message_code: str, message_string: str) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            message_code:
+                メッセージコードを設定します。
+            message_string :
+                メッセージ文字列を設定します。
+        """
+        super().__init__(status, responsetime)
+        self.message_code = message_code
+        self.message_string = message_string
+
+class MessageSchema(BaseSchema):
+    """
+   メッセージスキーマクラスです。
+    """
+    __model__ = Message
+    message_code = fields.Str(data_key='message_code')
+    message_string = fields.Str(data_key='message_string')
+
+
+class ErrorResponse(BaseResponse):
+    """
+    メッセージレスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: str,  messages: List[Message]) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime :
+                レスポンスタイムを設定します。
+            messages :
+                メッセージを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.messages = messages
+
+
+class ErrorResponseResSchema(BaseResponseSchema):
+    """
+    メッセージレスポンススキーマクラスです。
+    """
+    __model__ = ErrorResponse
+    messages = fields.Nested(MessageSchema, data_key='data', many=True)
