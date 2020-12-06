@@ -9,7 +9,7 @@ from datetime import datetime
 from ..common.annotation import post_request
 from ..common.const import GMOConst
 from ..common.logging import get_logger, log
-from ..common.dto import Symbol
+from ..common.dto import Symbol, BaseResponseSchema , BaseResponse
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
     GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes
 
@@ -129,7 +129,33 @@ class Client:
             "symbol": symbol.value
         }
 
-        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+        res = requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+        import pprint
+        pprint.pprint(res.json())
+        return res
+
+    @log(logger)
+    @post_request(BaseResponseSchema)
+    def cancel_order(self, order_id:int) -> BaseResponse:
+        """
+        注文取消をします。
+        対象: 現物取引、レバレッジ取引
+
+        Args:
+            order_id:
+
+        Returns:
+            BaseResponse
+        """
+
+        path = '/v1/cancelOrder'
+
+        headers = self._create_header(method='POST', path=path)
+        req_body = {
+            "orderId": order_id
+        }
+
+        return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
 
 
     @log(logger)
