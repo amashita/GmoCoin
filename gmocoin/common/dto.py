@@ -2,7 +2,8 @@
 from typing import List
 from enum import Enum
 from marshmallow import Schema, fields, post_load
-# from datetime import datetime
+from datetime import datetime
+from pytz import timezone
 
 
 class Status(Enum):
@@ -130,7 +131,7 @@ class BaseResponse:
     """
     ベースレスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str) -> None:
+    def __init__(self, status: int, responsetime: datetime) -> None:
         """
         コンストラクタです。
 
@@ -141,7 +142,7 @@ class BaseResponse:
                 レスポンスタイムを設定します。
         """
         self.status = status
-        self.responsetime = responsetime
+        self.responsetime = responsetime.astimezone(timezone('Asia/Tokyo'))
 
 
 class BaseResponseSchema(BaseSchema):
@@ -150,8 +151,7 @@ class BaseResponseSchema(BaseSchema):
     """
     __model__ = BaseResponse
     status = fields.Int(data_key='status')
-    # responsetime = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='responsetime')
-    responsetime = fields.Str(data_key='responsetime')
+    responsetime = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='responsetime')
 
 
 class Message:

@@ -3,6 +3,7 @@ from pprint import pprint
 from enum import Enum
 import time
 from decimal import Decimal
+from datetime import datetime
 
 from gmocoin.public.api import Client
 from gmocoin.common.dto import Status, Symbol, SalesSide
@@ -15,7 +16,7 @@ def test_get_status(capfd):
     res = client.get_status()
 
     assert type(res.status) is int
-    assert type(res.responsetime) is str
+    assert type(res.responsetime) is datetime
     assert type(res.data.status) is Status
 
     print(res.status)
@@ -29,7 +30,7 @@ def test_get_ticker(capfd):
     res = client.get_ticker(Symbol.BTC_JPY)
 
     assert type(res.status) is int
-    assert type(res.responsetime) is str
+    assert type(res.responsetime) is datetime
     for d in res.data:
         assert type(d.ask) is Decimal
         assert type(d.bid) is Decimal
@@ -37,7 +38,7 @@ def test_get_ticker(capfd):
         assert type(d.last) is Decimal
         assert type(d.low) is Decimal
         assert type(d.symbol) is Symbol
-        assert type(d.timestamp) is str
+        assert type(d.timestamp) is datetime
         assert type(d.volume) is Decimal
         
         print(d.ask)
@@ -64,7 +65,7 @@ def test_get_orderbooks(capfd):
     res = client.get_orderbooks(Symbol.BTC_JPY)
 
     assert type(res.status) is int
-    assert type(res.responsetime) is str
+    assert type(res.responsetime) is datetime
     for ask in res.data.asks:
         assert type(ask.price) is Decimal
         assert type(ask.size) is Decimal
@@ -84,7 +85,7 @@ def test_get_trades(capfd):
     res = client.get_trades(Symbol.BTC_JPY)
 
     assert type(res.status) is int
-    assert type(res.responsetime) is str
+    assert type(res.responsetime) is datetime
     assert type(res.data.pagination.current_page) is int
     assert type(res.data.pagination.count) is int
 
@@ -92,7 +93,7 @@ def test_get_trades(capfd):
         assert type(trade.price) is Decimal
         assert type(trade.side) is SalesSide
         assert type(trade.size) is Decimal
-        assert type(trade.timestamp) is str
+        assert type(trade.timestamp) is datetime
 
     time.sleep(TestConst.API_CALL_INTERVAL)
     res = client.get_trades(Symbol.BTC_JPY, page=2, count=50)

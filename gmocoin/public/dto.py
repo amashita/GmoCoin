@@ -3,6 +3,7 @@ from marshmallow import fields, pre_load
 from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
+from pytz import timezone
 from typing import List
 from decimal import Decimal
 
@@ -36,7 +37,7 @@ class GetStatusRes(BaseResponse):
     """
     取引所稼動状態レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetStatusData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetStatusData) -> None:
         """
         コンストラクタです。
 
@@ -65,7 +66,7 @@ class GetTickerData:
     """
     銘柄最新レートデータクラスです。
     """
-    def __init__(self, symbol: Symbol, timestamp: str, volume: Decimal, ask: Decimal, bid: Decimal, high: Decimal, last: Decimal, low: Decimal) -> None:
+    def __init__(self, symbol: Symbol, timestamp: datetime, volume: Decimal, ask: Decimal, bid: Decimal, high: Decimal, last: Decimal, low: Decimal) -> None:
         """
         コンストラクタです。
 
@@ -85,7 +86,7 @@ class GetTickerData:
         self.last = last
         self.low = low
         self.symbol = symbol
-        self.timestamp = timestamp
+        self.timestamp = timestamp.astimezone(timezone('Asia/Tokyo'))
         self.volume = volume
 
 
@@ -100,7 +101,7 @@ class GetTickerDataSchema(BaseSchema):
     last = fields.Decimal(data_key='last')
     low = fields.Decimal(data_key='low')
     symbol = EnumField(Symbol, data_key='symbol')
-    timestamp = fields.Str(data_key='timestamp')
+    timestamp = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='timestamp')
     volume = fields.Decimal(data_key='volume')
 
     @pre_load
@@ -124,7 +125,7 @@ class GetTickerRes(BaseResponse):
     """
     銘柄最新レートレスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetTickerData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetTickerData) -> None:
         """
         コンストラクタです。
 
@@ -209,7 +210,7 @@ class GetOrderBooksRes(BaseResponse):
     """
     銘柄板レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetOrderBooksData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetOrderBooksData) -> None:
         """
         コンストラクタです。
 
@@ -264,7 +265,7 @@ class Trade:
     """
     取引データクラスです。
     """
-    def __init__(self, price: Decimal, side: SalesSide, size: Decimal, timestamp: str) -> None:
+    def __init__(self, price: Decimal, side: SalesSide, size: Decimal, timestamp: datetime) -> None:
         """
         コンストラクタです。
 
@@ -281,7 +282,7 @@ class Trade:
         self.price = price
         self.side = side
         self.size = size
-        self.timestamp = timestamp
+        self.timestamp = timestamp.astimezone(timezone('Asia/Tokyo'))
 
 
 class TradeSchema(BaseSchema):
@@ -292,7 +293,8 @@ class TradeSchema(BaseSchema):
     price = fields.Decimal(data_key='price')
     side = EnumField(SalesSide, data_key='side')
     size = fields.Decimal(data_key='size')
-    timestamp = fields.Str(data_key='timestamp')
+    timestamp = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='timestamp')
+
 
 
 class GetTradesData:
@@ -326,7 +328,7 @@ class GetTradesRes(BaseResponse):
     """
     取引履歴レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetOrderBooksData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetOrderBooksData) -> None:
         """
         コンストラクタです。
 

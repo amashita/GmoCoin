@@ -3,6 +3,7 @@ from marshmallow import fields
 from marshmallow_enum import EnumField
 from enum import Enum
 from datetime import datetime
+from pytz import timezone
 from typing import List
 from decimal import Decimal
 
@@ -50,7 +51,7 @@ class GetMarginRes(BaseResponse):
     """
     余力情報レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetMarginData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetMarginData) -> None:
         """
         コンストラクタです。
 
@@ -113,7 +114,7 @@ class GetAssetsRes(BaseResponse):
     """
     資産残高レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetAssetsData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetAssetsData) -> None:
         """
         コンストラクタです。
 
@@ -170,7 +171,7 @@ class ActiveOrder:
     """
     def __init__(self, root_order_id: int, order_id: int, symbol: Symbol, side: SalesSide, order_type: OrderType, 
                  execution_type: ExecutionType, settle_type: SettleType, size: Decimal, executed_size: Decimal,
-                 price: Decimal, losscut_price: Decimal, status: OrderStatus, time_in_force: TimeInForce, timestamp: str) -> None:
+                 price: Decimal, losscut_price: Decimal, status: OrderStatus, time_in_force: TimeInForce, timestamp: datetime) -> None:
         """
         コンストラクタです。
 
@@ -218,7 +219,7 @@ class ActiveOrder:
         self.losscut_price = losscut_price
         self.status = status
         self.time_in_force = time_in_force
-        self.timestamp = timestamp
+        self.timestamp = timestamp.astimezone(timezone('Asia/Tokyo'))
 
 
 class ActiveOrderSchema(BaseSchema):
@@ -239,7 +240,7 @@ class ActiveOrderSchema(BaseSchema):
     losscut_price = fields.Decimal(data_key='losscutPrice')
     status = EnumField(OrderStatus, data_key='status')
     time_in_force = EnumField(TimeInForce, data_key='timeInForce')
-    timestamp = fields.Str(data_key='timestamp')
+    timestamp = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='timestamp')
 
 
 class GetActiveOrdersData:
@@ -273,7 +274,7 @@ class GetActiveOrdersRes(BaseResponse):
     """
     有効注文一覧レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetActiveOrdersData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetActiveOrdersData) -> None:
         """
         コンストラクタです。
 
@@ -398,7 +399,7 @@ class PostOrderRes(BaseResponse):
     """
     新規注文レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: int) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: int) -> None:
         """
         コンストラクタです。
 
@@ -426,7 +427,7 @@ class PostCloseOrderRes(BaseResponse):
     """
     決済注文レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: int) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: int) -> None:
         """
         コンストラクタです。
 
@@ -454,7 +455,7 @@ class PostCloseBulkOrderRes(BaseResponse):
     """
     一括決済注文レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: int) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: int) -> None:
         """
         コンストラクタです。
 
