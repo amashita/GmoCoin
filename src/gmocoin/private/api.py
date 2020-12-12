@@ -187,6 +187,37 @@ class Client:
 
     @log(logger)
     @post_request(BaseResponseSchema)
+    def change_order(self, order_id:int, price: str, losscut_price: str='') -> BaseResponse:
+        """
+        注文変更をします。
+        対象: 現物取引、レバレッジ取引
+
+        Args:
+            order_id:
+                Required
+            price:
+                Required
+            losscut_price
+                Optional	
+
+        Returns:
+            BaseResponse
+        """
+
+        path = '/v1/changeOrder'
+        req_body = {
+            "orderId": order_id,
+            "price": price
+        }
+        if len(losscut_price) > 0:
+            req_body["losscutPrice"] = losscut_price
+
+        headers = self._create_header(method='POST', path=path, req_body=req_body)
+
+        return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
+
+    @log(logger)
+    @post_request(BaseResponseSchema)
     def cancel_order(self, order_id:int) -> BaseResponse:
         """
         注文取消をします。
