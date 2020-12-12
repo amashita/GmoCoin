@@ -61,7 +61,16 @@ class Test:
     def test_get_active_orders(self):
         time.sleep(TestConst.API_CALL_INTERVAL)
         client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
-        res = client.get_active_orders(symbol=Symbol.XRP_JPY)
+
+        res = client.order(symbol=Symbol.BTC_JPY, 
+                           side=SalesSide.BUY, 
+                           execution_type=ExecutionType.LIMIT,
+                           time_in_force=TimeInForce.FAS,
+                           price='1500000',
+                           size='0.01')
+        order_id = res.data
+
+        res = client.get_active_orders(symbol=Symbol.BTC_JPY)
 
         assert type(res.status) is int
         assert type(res.responsetime) is str
@@ -103,6 +112,8 @@ class Test:
             print(o.time_in_force)
             print(o.timestamp)
 
+        client.cancel_order(order_id)
+
         client.get_active_orders(symbol=Symbol.BTC)
 
     def test_get_position_summary(self):
@@ -133,6 +144,38 @@ class Test:
                 print(p.symbol)
 
         client.get_position_summary(symbol=Symbol.LTC_JPY)
+
+    def test_order_change_and_cancel(self):
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
+        res = client.order(symbol=Symbol.BTC_JPY, 
+                           side=SalesSide.BUY, 
+                           execution_type=ExecutionType.LIMIT,
+                           time_in_force=TimeInForce.FAS,
+                           price='1500000',
+                           size='0.01')
+        order_id = res.data
+
+        assert type(res.status) is int
+        assert type(res.responsetime) is str
+        assert type(res.data) is int
+        print(res.status)
+        print(res.responsetime)
+        print(res.data)
+
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        res = client.change_order(res.data, price='1510000', losscut_price='1000000')
+        assert type(res.status) is int
+        assert type(res.responsetime) is str
+        print(res.status)
+        print(res.responsetime)
+
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        res = client.cancel_order(order_id)
+        assert type(res.status) is int
+        assert type(res.responsetime) is str
+        print(res.status)
+        print(res.responsetime)
 
     def test_order_and_cancel(self):
         time.sleep(TestConst.API_CALL_INTERVAL)
