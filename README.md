@@ -50,7 +50,7 @@ pipenv run pytest
 ### GenerateDoc
 
 ```
-pipenv run sphinx-apidoc -f -o docs/source src/gmocoin
+pipenv run sphinx-apidoc -f -o docs/source gmocoin
 pipenv run sphinx-build -b html docs/source docs/build
 ```
 

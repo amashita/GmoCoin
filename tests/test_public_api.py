@@ -4,8 +4,8 @@ from enum import Enum
 import time
 from decimal import Decimal
 
-from src.gmocoin.public.api import Client
-from src.gmocoin.common.dto import Status, Symbol, SalesSide
+from gmocoin.public.api import Client
+from gmocoin.common.dto import Status, Symbol, SalesSide
 from .const import TestConst
 
 

@@ -5,8 +5,8 @@ import time
 import json
 from decimal import Decimal
 
-from src.gmocoin.private.api import Client
-from src.gmocoin.common.dto import AssetSymbol, Symbol, SalesSide, OrderType, ExecutionType, SettleType, \
+from gmocoin.private.api import Client
+from gmocoin.common.dto import AssetSymbol, Symbol, SalesSide, OrderType, ExecutionType, SettleType, \
     OrderStatus, TimeInForce
 from .const import TestConst
 
