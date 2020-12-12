@@ -204,3 +204,7 @@ class Test:
     def test_close_order(self):
         # 建玉が必要なためテスト省略
         pass
+
+    def test_close_bulk_order(self):
+        # 建玉が必要なためテスト省略
+        pass
