@@ -4,6 +4,7 @@ from enum import Enum
 import time
 import json
 from decimal import Decimal
+from datetime import datetime
 
 from gmocoin.private.api import Client
 from gmocoin.common.dto import AssetSymbol, Symbol, SalesSide, OrderType, ExecutionType, SettleType, \
@@ -24,7 +25,7 @@ class Test:
         res = client.get_margin()
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         assert type(res.data.actual_profit_loss) is Decimal
         assert type(res.data.available_amount) is Decimal
         assert type(res.data.margin) is Decimal
@@ -43,7 +44,7 @@ class Test:
         res = client.get_assets()
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         for d in res.data:
             assert type(d.amount) is Decimal
             assert type(d.available) is Decimal
@@ -73,7 +74,7 @@ class Test:
         res = client.get_active_orders(symbol=Symbol.BTC_JPY)
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         assert type(res.data.pagination.current_page) is int
         assert type(res.data.pagination.count) is int
         for o in res.data.active_orders:
@@ -90,7 +91,7 @@ class Test:
             assert type(o.losscut_price) is Decimal
             assert type(o.status) is OrderStatus
             assert type(o.time_in_force) is TimeInForce
-            assert type(o.timestamp) is str
+            assert type(o.timestamp) is datetime
 
         print(res.status)
         print(res.responsetime)
@@ -122,7 +123,7 @@ class Test:
         res = client.get_position_summary(symbol=Symbol.XRP_JPY)
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         if res.data.position_summarys is not None:
             for p in res.data.position_summarys:
                 assert type(p.average_position_rate) is Decimal
@@ -157,7 +158,7 @@ class Test:
         order_id = res.data
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         assert type(res.data) is int
         print(res.status)
         print(res.responsetime)
@@ -166,14 +167,14 @@ class Test:
         time.sleep(TestConst.API_CALL_INTERVAL)
         res = client.change_order(res.data, price='1510000', losscut_price='1000000')
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         print(res.status)
         print(res.responsetime)
 
         time.sleep(TestConst.API_CALL_INTERVAL)
         res = client.cancel_order(order_id)
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         print(res.status)
         print(res.responsetime)
 
@@ -188,7 +189,7 @@ class Test:
                            size='0.01')
 
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         assert type(res.data) is int
         print(res.status)
         print(res.responsetime)
@@ -197,7 +198,7 @@ class Test:
         time.sleep(TestConst.API_CALL_INTERVAL)
         res = client.cancel_order(res.data)
         assert type(res.status) is int
-        assert type(res.responsetime) is str
+        assert type(res.responsetime) is datetime
         print(res.status)
         print(res.responsetime)
 
