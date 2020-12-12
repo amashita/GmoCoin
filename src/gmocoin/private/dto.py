@@ -418,5 +418,33 @@ class PostOrderResSchema(BaseResponseSchema):
     """
     新規注文レスポンススキーマクラスです。
     """
-    __model__ = GetPositionSummaryRes
+    __model__ = PostOrderRes
+    data = fields.Int(data_key='data')
+
+
+class PostCloseOrderRes(BaseResponse):
+    """
+    決済注文レスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: str, data: int) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime:
+                レスポンスタイムを設定します。
+            data:
+                レスポンスデータを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class PostCloseOrderResSchema(BaseResponseSchema):
+    """
+    決済注文レスポンススキーマクラスです。
+    """
+    __model__ = PostCloseOrderRes
     data = fields.Int(data_key='data')

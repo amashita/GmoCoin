@@ -12,7 +12,7 @@ from ..common.logging import get_logger, log
 from ..common.dto import Symbol, SalesSide, ExecutionType, TimeInForce, BaseResponseSchema , BaseResponse
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
     GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes,\
-    PostOrderResSchema, PostOrderRes
+    PostOrderResSchema, PostOrderRes, PostCloseOrderResSchema, PostCloseOrderRes
 
 
 logger = get_logger()
@@ -234,6 +234,66 @@ class Client:
         req_body = {
             "orderId": order_id
         }
+
+        headers = self._create_header(method='POST', path=path, req_body=req_body)
+
+        return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
+
+
+    @log(logger)
+    @post_request(PostCloseOrderResSchema)
+    def close_order(self, symbol:Symbol, side:SalesSide, execution_type:ExecutionType, time_in_force: TimeInForce,
+                    position_id:int, position_size: str, price:str='0') -> PostCloseOrderRes:
+        """
+        決済注文をします。
+        対象: レバレッジ取引
+
+        Args:
+            symbol:
+                Required
+                BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            side:
+                Required
+                BUY SELL
+            execution_type:
+                Required
+                MARKET LIMIT STOP
+            time_in_force:
+                Optional
+                FAK ( MARKET STOPの場合のみ設定可能 )
+                FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+                *指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+                SOKはBTC_JPYの場合のみ指定可能です。
+            price:
+                *executionTypeによる
+                LIMIT STOP の場合は必須、 MARKET の場合は不要。
+            position_id:
+                Required
+                建玉は1つのみ指定可能。
+            position_size:
+                Required
+                建玉は1つのみ指定可能。
+
+        Returns:
+            PostCloseOrderRes
+        """
+
+        path = '/v1/closeOrder'
+
+        req_body = {
+            "symbol": symbol.value,
+            "side": side.value,
+            "executionType": execution_type.value,
+            "timeInForce": time_in_force.value,
+            "settlePosition": [
+                {
+                    "positionId": position_size,
+                    "size": position_size
+                }
+            ]
+        }
+        if execution_type != ExecutionType.MARKET:
+            req_body["price"] = price
 
         headers = self._create_header(method='POST', path=path, req_body=req_body)
 
