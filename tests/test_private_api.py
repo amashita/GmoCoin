@@ -200,3 +200,7 @@ class Test:
         assert type(res.responsetime) is str
         print(res.status)
         print(res.responsetime)
+
+    def test_close_order(self):
+        # 建玉が必要なためテスト省略
+        pass
