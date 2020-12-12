@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gmocoin.private package &mdash; GmoCoin 2020 ドキュメント</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> GmoCoin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">gmocoin.private package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-gmocoin.private.api">gmocoin.private.api module</a></li>
+<li><a class="reference internal" href="#module-gmocoin.private.dto">gmocoin.private.dto module</a></li>
+<li><a class="reference internal" href="#module-gmocoin.private">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GmoCoin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>gmocoin.private package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gmocoin.private.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gmocoin-private-package">
+<h1>gmocoin.private package<a class="headerlink" href="#gmocoin-private-package" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="module-gmocoin.private.api">
+<span id="gmocoin-private-api-module"></span><h2>gmocoin.private.api module<a class="headerlink" href="#module-gmocoin.private.api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="py class">
+<dt id="gmocoin.private.api.Client">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.api.</code><code class="sig-name descname">Client</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.api.Client" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>GMOCoinのプライベートAPIクライアントクラスです。</p>
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.cancel_order">
+<code class="sig-name descname">cancel_order</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse">gmocoin.common.dto.BaseResponse</a><a class="headerlink" href="#gmocoin.private.api.Client.cancel_order" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>注文取消をします。
+対象: 現物取引、レバレッジ取引</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>order_id</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>BaseResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.change_order">
+<code class="sig-name descname">change_order</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">losscut_price</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse">gmocoin.common.dto.BaseResponse</a><a class="headerlink" href="#gmocoin.private.api.Client.change_order" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>注文変更をします。
+対象: 現物取引、レバレッジ取引</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order_id</strong> -- Required</p></li>
+<li><p><strong>price</strong> -- Required</p></li>
+<li><p><strong>losscut_price</strong> -- Optional</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>BaseResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.close_bulk_order">
+<code class="sig-name descname">close_bulk_order</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em>, <em class="sig-param"><span class="n">side</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SalesSide" title="gmocoin.common.dto.SalesSide">gmocoin.common.dto.SalesSide</a></span></em>, <em class="sig-param"><span class="n">execution_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.ExecutionType" title="gmocoin.common.dto.ExecutionType">gmocoin.common.dto.ExecutionType</a></span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.TimeInForce" title="gmocoin.common.dto.TimeInForce">gmocoin.common.dto.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'0'</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.PostCloseBulkOrderRes" title="gmocoin.private.dto.PostCloseBulkOrderRes">gmocoin.private.dto.PostCloseBulkOrderRes</a><a class="headerlink" href="#gmocoin.private.api.Client.close_bulk_order" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>一括決済注文をします。
+対象: レバレッジ取引</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> -- Required
+BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY</p></li>
+<li><p><strong>side</strong> -- Required
+BUY SELL</p></li>
+<li><p><strong>execution_type</strong> -- Required
+MARKET LIMIT STOP</p></li>
+<li><p><strong>time_in_force</strong> -- Optional
+FAK ( MARKET STOPの場合のみ設定可能 )
+FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+<a href="#id1"><span class="problematic" id="id2">*</span></a>指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+SOKはBTC_JPYの場合のみ指定可能です。</p></li>
+<li><p><strong>price</strong> -- <a href="#id3"><span class="problematic" id="id4">*</span></a>executionTypeによる
+LIMIT STOP の場合は必須、 MARKET の場合は不要。</p></li>
+<li><p><strong>size</strong> -- Required</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>PostCloseBulkOrderRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.close_order">
+<code class="sig-name descname">close_order</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em>, <em class="sig-param"><span class="n">side</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SalesSide" title="gmocoin.common.dto.SalesSide">gmocoin.common.dto.SalesSide</a></span></em>, <em class="sig-param"><span class="n">execution_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.ExecutionType" title="gmocoin.common.dto.ExecutionType">gmocoin.common.dto.ExecutionType</a></span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.TimeInForce" title="gmocoin.common.dto.TimeInForce">gmocoin.common.dto.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">position_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">position_size</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'0'</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.PostCloseOrderRes" title="gmocoin.private.dto.PostCloseOrderRes">gmocoin.private.dto.PostCloseOrderRes</a><a class="headerlink" href="#gmocoin.private.api.Client.close_order" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>決済注文をします。
+対象: レバレッジ取引</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> -- Required
+BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY</p></li>
+<li><p><strong>side</strong> -- Required
+BUY SELL</p></li>
+<li><p><strong>execution_type</strong> -- Required
+MARKET LIMIT STOP</p></li>
+<li><p><strong>time_in_force</strong> -- Optional
+FAK ( MARKET STOPの場合のみ設定可能 )
+FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+<a href="#id5"><span class="problematic" id="id6">*</span></a>指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+SOKはBTC_JPYの場合のみ指定可能です。</p></li>
+<li><p><strong>price</strong> -- <a href="#id7"><span class="problematic" id="id8">*</span></a>executionTypeによる
+LIMIT STOP の場合は必須、 MARKET の場合は不要。</p></li>
+<li><p><strong>position_id</strong> -- Required
+建玉は1つのみ指定可能。</p></li>
+<li><p><strong>position_size</strong> -- Required
+建玉は1つのみ指定可能。</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>PostCloseOrderRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.get_active_orders">
+<code class="sig-name descname">get_active_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em>, <em class="sig-param"><span class="n">page</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">count</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.GetActiveOrdersRes" title="gmocoin.private.dto.GetActiveOrdersRes">gmocoin.private.dto.GetActiveOrdersRes</a><a class="headerlink" href="#gmocoin.private.api.Client.get_active_orders" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>有効注文一覧を取得します。
+対象: 現物取引、レバレッジ取引。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> -- BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY</p></li>
+<li><p><strong>page</strong> -- 取得対象ページ: 指定しない場合は1を指定したとして動作する。</p></li>
+<li><p><strong>count</strong> -- 1ページ当りの取得件数: 指定しない場合は100(最大値)を指定したとして動作する。</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>GetActiveOrdersRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.get_assets">
+<code class="sig-name descname">get_assets</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.GetAssetsRes" title="gmocoin.private.dto.GetAssetsRes">gmocoin.private.dto.GetAssetsRes</a><a class="headerlink" href="#gmocoin.private.api.Client.get_assets" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>資産残高を取得します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>なし</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>GetAssetsRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.get_margin">
+<code class="sig-name descname">get_margin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.GetMarginRes" title="gmocoin.private.dto.GetMarginRes">gmocoin.private.dto.GetMarginRes</a><a class="headerlink" href="#gmocoin.private.api.Client.get_margin" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>余力情報を取得します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>なし</strong> -- </p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>GetMarginRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.get_position_summary">
+<code class="sig-name descname">get_position_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.GetPositionSummaryRes" title="gmocoin.private.dto.GetPositionSummaryRes">gmocoin.private.dto.GetPositionSummaryRes</a><a class="headerlink" href="#gmocoin.private.api.Client.get_position_summary" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>建玉サマリーを取得します。
+対象: レバレッジ取引</p>
+<p>銘柄ごと、売買区分(買/売)ごとの建玉サマリー取得ができます。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>symbol</strong> -- BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>GetPositionSummaryRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gmocoin.private.api.Client.order">
+<code class="sig-name descname">order</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em>, <em class="sig-param"><span class="n">side</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SalesSide" title="gmocoin.common.dto.SalesSide">gmocoin.common.dto.SalesSide</a></span></em>, <em class="sig-param"><span class="n">execution_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.ExecutionType" title="gmocoin.common.dto.ExecutionType">gmocoin.common.dto.ExecutionType</a></span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.TimeInForce" title="gmocoin.common.dto.TimeInForce">gmocoin.common.dto.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'0'</span></em>, <em class="sig-param"><span class="n">losscut_price</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'0'</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#gmocoin.private.dto.PostOrderRes" title="gmocoin.private.dto.PostOrderRes">gmocoin.private.dto.PostOrderRes</a><a class="headerlink" href="#gmocoin.private.api.Client.order" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>新規注文をします。
+対象: 現物取引、レバレッジ取引</p>
+<p>現物取引: 買/売注文
+レバレッジ取引: 新規の買/売注文</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> -- BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY</p></li>
+<li><p><strong>side</strong> -- BUY SELL</p></li>
+<li><p><strong>execution_type</strong> -- MARKET LIMIT STOP</p></li>
+<li><p><strong>time_in_force</strong> -- Optional        FAK ( MARKET STOPの場合のみ設定可能 )
+FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+<a href="#id9"><span class="problematic" id="id10">*</span></a>指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+SOKは現物取引（全銘柄）とレバレッジ取引(BTC_JPY)の場合のみ指定可能です。</p></li>
+<li><p><strong>price</strong> -- <a href="#id11"><span class="problematic" id="id12">*</span></a>executionTypeによる
+LIMIT STOP の場合は必須、 MARKET の場合は不要。</p></li>
+<li><p><strong>losscut_price</strong> -- レバレッジ取引で、executionTypeが LIMIT または STOP の場合のみ設定可能。</p></li>
+<li><p><strong>size</strong> -- 数量</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>PostOrderRes</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gmocoin.private.dto">
+<span id="gmocoin-private-dto-module"></span><h2>gmocoin.private.dto module<a class="headerlink" href="#module-gmocoin.private.dto" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<dl class="py class">
+<dt id="gmocoin.private.dto.ActiveOrder">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">ActiveOrder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root_order_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">order_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em>, <em class="sig-param"><span class="n">side</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SalesSide" title="gmocoin.common.dto.SalesSide">gmocoin.common.dto.SalesSide</a></span></em>, <em class="sig-param"><span class="n">order_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.OrderType" title="gmocoin.common.dto.OrderType">gmocoin.common.dto.OrderType</a></span></em>, <em class="sig-param"><span class="n">execution_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.ExecutionType" title="gmocoin.common.dto.ExecutionType">gmocoin.common.dto.ExecutionType</a></span></em>, <em class="sig-param"><span class="n">settle_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SettleType" title="gmocoin.common.dto.SettleType">gmocoin.common.dto.SettleType</a></span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">executed_size</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">losscut_price</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.OrderStatus" title="gmocoin.common.dto.OrderStatus">gmocoin.common.dto.OrderStatus</a></span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.TimeInForce" title="gmocoin.common.dto.TimeInForce">gmocoin.common.dto.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">timestamp</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.ActiveOrder" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>有効注文一覧クラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.ActiveOrderSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">ActiveOrderSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.ActiveOrderSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>有効注文一覧スキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.ActiveOrderSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.ActiveOrderSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.ActiveOrdersPagenation">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">ActiveOrdersPagenation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_page</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">count</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.ActiveOrdersPagenation" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>有効注文一覧ページングデータクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.ActiveOrdersPagenationSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">ActiveOrdersPagenationSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.ActiveOrdersPagenationSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>有効注文一覧ページングデータスキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.ActiveOrdersPagenationSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.ActiveOrdersPagenationSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetActiveOrdersData">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetActiveOrdersData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pagination</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#gmocoin.private.dto.ActiveOrdersPagenation" title="gmocoin.private.dto.ActiveOrdersPagenation">gmocoin.private.dto.ActiveOrdersPagenation</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">active_orders</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="#gmocoin.private.dto.ActiveOrder" title="gmocoin.private.dto.ActiveOrder">gmocoin.private.dto.ActiveOrder</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersData" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>有効注文一覧データクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetActiveOrdersDataSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetActiveOrdersDataSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersDataSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>有効注文一覧データスキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetActiveOrdersDataSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersDataSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetActiveOrdersRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetActiveOrdersRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#gmocoin.private.dto.GetActiveOrdersData" title="gmocoin.private.dto.GetActiveOrdersData">gmocoin.private.dto.GetActiveOrdersData</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>有効注文一覧レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetActiveOrdersResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetActiveOrdersResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>有効注文一覧レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetActiveOrdersResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetActiveOrdersResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetAssetsData">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetAssetsData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">amount</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">available</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">conversion_rate</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.AssetSymbol" title="gmocoin.common.dto.AssetSymbol">gmocoin.common.dto.AssetSymbol</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetAssetsData" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>資産残高データクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetAssetsDataSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetAssetsDataSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetAssetsDataSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>資産残高データスキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetAssetsDataSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetAssetsDataSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetAssetsRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetAssetsRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#gmocoin.private.dto.GetAssetsData" title="gmocoin.private.dto.GetAssetsData">gmocoin.private.dto.GetAssetsData</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetAssetsRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>資産残高レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetAssetsResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetAssetsResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetAssetsResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>資産残高レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetAssetsResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetAssetsResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetMarginData">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetMarginData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">actual_profit_loss</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">available_amount</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">margin</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">profit_loss</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetMarginData" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>余力情報データクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetMarginDataSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetMarginDataSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetMarginDataSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>余力情報データスキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetMarginDataSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetMarginDataSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetMarginRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetMarginRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#gmocoin.private.dto.GetMarginData" title="gmocoin.private.dto.GetMarginData">gmocoin.private.dto.GetMarginData</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetMarginRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>余力情報レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetMarginResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetMarginResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetMarginResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>余力情報レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetMarginResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetMarginResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetPositionSummaryData">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetPositionSummaryData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position_summarys</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="#gmocoin.private.dto.PositionSummary" title="gmocoin.private.dto.PositionSummary">gmocoin.private.dto.PositionSummary</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryData" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>建玉サマリーデータクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetPositionSummaryDataSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetPositionSummaryDataSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryDataSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>建玉サマリーデータスキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetPositionSummaryDataSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryDataSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetPositionSummaryRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetPositionSummaryRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#gmocoin.private.dto.GetActiveOrdersData" title="gmocoin.private.dto.GetActiveOrdersData">gmocoin.private.dto.GetActiveOrdersData</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>建玉サマリーレスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.GetPositionSummaryResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">GetPositionSummaryResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>建玉サマリーレスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.GetPositionSummaryResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.GetPositionSummaryResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PositionSummary">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PositionSummary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">average_position_rate</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">position_loss_gain</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">side</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.SalesSide" title="gmocoin.common.dto.SalesSide">gmocoin.common.dto.SalesSide</a></span></em>, <em class="sig-param"><span class="n">sum_order_quantity</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">sum_position_quantity</span><span class="p">:</span> <span class="n">decimal.Decimal</span></em>, <em class="sig-param"><span class="n">symbol</span><span class="p">:</span> <span class="n"><a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.Symbol" title="gmocoin.common.dto.Symbol">gmocoin.common.dto.Symbol</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PositionSummary" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>建玉サマリークラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PositionSummarySchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PositionSummarySchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PositionSummarySchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseSchema" title="gmocoin.common.dto.BaseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseSchema</span></code></a></p>
+<p>建玉サマリースキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.PositionSummarySchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.PositionSummarySchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostCloseBulkOrderRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostCloseBulkOrderRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostCloseBulkOrderRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>一括決済注文レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostCloseBulkOrderResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostCloseBulkOrderResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostCloseBulkOrderResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>一括決済注文レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.PostCloseBulkOrderResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.PostCloseBulkOrderResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostCloseOrderRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostCloseOrderRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostCloseOrderRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>決済注文レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostCloseOrderResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostCloseOrderResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostCloseOrderResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>決済注文レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.PostCloseOrderResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.PostCloseOrderResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostOrderRes">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostOrderRes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">responsetime</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostOrderRes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponse" title="gmocoin.common.dto.BaseResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponse</span></code></a></p>
+<p>新規注文レスポンスクラスです。</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gmocoin.private.dto.PostOrderResSchema">
+<em class="property">class </em><code class="sig-prename descclassname">gmocoin.private.dto.</code><code class="sig-name descname">PostOrderResSchema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">only</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">many</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">dump_only</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">partial</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>bool<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unknown</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gmocoin.private.dto.PostOrderResSchema" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="gmocoin.common.html#gmocoin.common.dto.BaseResponseSchema" title="gmocoin.common.dto.BaseResponseSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">gmocoin.common.dto.BaseResponseSchema</span></code></a></p>
+<p>新規注文レスポンススキーマクラスです。</p>
+<dl class="py attribute">
+<dt id="gmocoin.private.dto.PostOrderResSchema.opts">
+<code class="sig-name descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#gmocoin.private.dto.PostOrderResSchema.opts" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gmocoin.private">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gmocoin.private" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 著作権 2020, amashita
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

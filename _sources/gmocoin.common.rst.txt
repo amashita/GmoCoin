@@ -4,10 +4,26 @@ gmocoin.common package
 Submodules
 ----------
 
+gmocoin.common.annotation module
+--------------------------------
+
+.. automodule:: gmocoin.common.annotation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gmocoin.common.const module
 ---------------------------
 
 .. automodule:: gmocoin.common.const
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gmocoin.common.dto module
+-------------------------
+
+.. automodule:: gmocoin.common.dto
    :members:
    :undoc-members:
    :show-inheritance:
