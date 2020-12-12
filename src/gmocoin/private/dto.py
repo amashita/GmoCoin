@@ -448,3 +448,31 @@ class PostCloseOrderResSchema(BaseResponseSchema):
     """
     __model__ = PostCloseOrderRes
     data = fields.Int(data_key='data')
+
+
+class PostCloseBulkOrderRes(BaseResponse):
+    """
+    一括決済注文レスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: str, data: int) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime:
+                レスポンスタイムを設定します。
+            data:
+                レスポンスデータを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class PostCloseBulkOrderResSchema(BaseResponseSchema):
+    """
+    一括決済注文レスポンススキーマクラスです。
+    """
+    __model__ = PostCloseBulkOrderRes
+    data = fields.Int(data_key='data')

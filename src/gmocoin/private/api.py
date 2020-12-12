@@ -12,7 +12,8 @@ from ..common.logging import get_logger, log
 from ..common.dto import Symbol, SalesSide, ExecutionType, TimeInForce, BaseResponseSchema , BaseResponse
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
     GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes,\
-    PostOrderResSchema, PostOrderRes, PostCloseOrderResSchema, PostCloseOrderRes
+    PostOrderResSchema, PostOrderRes, PostCloseOrderResSchema, PostCloseOrderRes,\
+    PostCloseBulkOrderResSchema, PostCloseBulkOrderRes
 
 
 logger = get_logger()
@@ -291,6 +292,56 @@ class Client:
                     "size": position_size
                 }
             ]
+        }
+        if execution_type != ExecutionType.MARKET:
+            req_body["price"] = price
+
+        headers = self._create_header(method='POST', path=path, req_body=req_body)
+
+        return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
+
+    @log(logger)
+    @post_request(PostCloseBulkOrderResSchema)
+    def close_bulk_order(self, symbol:Symbol, side:SalesSide, execution_type:ExecutionType, time_in_force: TimeInForce,
+                         size: str, price:str='0') -> PostCloseBulkOrderRes:
+        """
+        一括決済注文をします。
+        対象: レバレッジ取引
+
+        Args:
+            symbol:
+                Required
+                BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            side:
+                Required
+                BUY SELL
+            execution_type:
+                Required
+                MARKET LIMIT STOP
+            time_in_force:
+                Optional
+                FAK ( MARKET STOPの場合のみ設定可能 )
+                FAS FOK ((Post-onlyの場合はSOK) LIMITの場合のみ設定可能 )
+                *指定がない場合は成行と逆指値はFAK、指値はFASで注文されます。
+                SOKはBTC_JPYの場合のみ指定可能です。
+            price:
+                *executionTypeによる
+                LIMIT STOP の場合は必須、 MARKET の場合は不要。
+            size:
+                Required
+
+        Returns:
+            PostCloseBulkOrderRes
+        """
+
+        path = '/v1/closeBulkOrder'
+
+        req_body = {
+            "symbol": symbol.value,
+            "side": side.value,
+            "executionType": execution_type.value,
+            "timeInForce": time_in_force.value,
+            "size": size
         }
         if execution_type != ExecutionType.MARKET:
             req_body["price"] = price
