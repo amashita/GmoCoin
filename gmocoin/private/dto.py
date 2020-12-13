@@ -371,7 +371,7 @@ class GetPositionSummaryRes(BaseResponse):
     """
     建玉サマリーレスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: str, data: GetActiveOrdersData) -> None:
+    def __init__(self, status: int, responsetime: str, data: GetPositionSummaryData) -> None:
         """
         コンストラクタです。
 
