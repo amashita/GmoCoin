@@ -5,32 +5,6 @@ from functools import wraps
 from pathlib import Path
 
 
-# グローバル変数 ログ保存フォルダパス
-g_log_dir = Path('./')
-
-
-def set_log_dir(dir: str) -> None:
-    """
-    ログの出力ディレクトリを指定します。
-
-    Args:
-        dir (str) :
-            ログの出力ディレクトリ
-    """
-    global g_log_dir
-    g_log_dir = Path(dir)
-
-
-def get_log_path() -> str:
-    """
-    ログの出力ファイルを取得します。
-
-    Returns:
-        output file path(str):
-    """
-    return str(g_log_dir / 'GmoCoin.log')
-
-
 def get_logger() -> logging.Logger:
     """
     logging.Loggerを作成します。
@@ -40,13 +14,6 @@ def get_logger() -> logging.Logger:
             logging.Loggerのインスタンス
     """
 
-    # basicConfigのformat引数でログのフォーマットを指定する 
-    log_format = '[%(asctime)s] [%(thread)d] %(levelname)s\t%(filename)s' \
-                 ' - %(funcName)s:%(lineno)s -> %(message)s'
-    logging.basicConfig(filename=get_log_path(), 
-                        format=log_format, 
-                        level=logging.DEBUG,
-                        filemode='w')
     logger = logging.getLogger(__name__)
     return logger
 
