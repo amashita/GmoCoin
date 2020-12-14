@@ -18,7 +18,7 @@ class Client:
     '''
     GMOCoinのパブリックAPIクライアントクラスです。
     '''
-
+    
     @log(logger)
     @post_request(GetStatusResSchema)
     def get_status(self) -> GetStatusRes:
