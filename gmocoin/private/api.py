@@ -24,7 +24,6 @@ class Client:
     GMOCoinのプライベートAPIクライアントクラスです。
     '''
 
-    @log(logger)
     def __init__(self, api_key: str, secret_key: str):
         """
         コンストラクタです。
@@ -350,7 +349,6 @@ class Client:
 
         return requests.post(GMOConst.END_POINT_PRIVATE + path, headers=headers, data=json.dumps(req_body))
 
-    @log(logger)
     def _create_header(self, method :str, path :str, req_body:[] = None) -> dict:
         """
         ヘッダーを生成します。
@@ -380,7 +378,6 @@ class Client:
 
         return headers
 
-    @log(logger)
     def _is_leverage(self, symbol: Symbol) -> bool:
         """
         取引種別がレバレッジ取引かどうかを返却します。
