@@ -102,7 +102,5 @@ def test_get_trades(capfd):
 
 def test_get_trades_loop(capfd):
     client = Client()
-    for i in range(10):
-        res = client.get_trades(Symbol.BTC_JPY)
-        print(res.status)
-
+    for i in range(1,13):
+        client.get_trades(Symbol.BTC_JPY, page=i, count=100)

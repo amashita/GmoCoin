@@ -328,7 +328,7 @@ class GetTradesRes(BaseResponse):
     """
     取引履歴レスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: datetime, data: GetOrderBooksData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: GetTradesData) -> None:
         """
         コンストラクタです。
 
