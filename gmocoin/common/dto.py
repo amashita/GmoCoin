@@ -45,6 +45,7 @@ class AssetSymbol(Enum):
     XLM = 'XLM'
     BAT = 'BAT'
     OMG = 'OMG'
+    XTZ = 'XTZ'
 
 
 class SalesSide(Enum):
@@ -206,4 +207,4 @@ class ErrorResponseResSchema(BaseResponseSchema):
     メッセージレスポンススキーマクラスです。
     """
     __model__ = ErrorResponse
-    messages = fields.Nested(MessageSchema, data_key='data', many=True)
+    messages = fields.Nested(MessageSchema, data_key='messages', many=True)
