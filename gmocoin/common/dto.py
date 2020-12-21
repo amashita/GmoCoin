@@ -169,7 +169,6 @@ class Message:
             message_string :
                 メッセージ文字列を設定します。
         """
-        super().__init__(status, responsetime)
         self.message_code = message_code
         self.message_string = message_string
 
