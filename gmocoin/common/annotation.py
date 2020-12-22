@@ -52,7 +52,7 @@ def post_request(Schema, interval: float=0.5, retry_count: int=10):
                 res_json = ret.json()
 
                 if res_json['status'] != 0:
-                    if res_json['messages']['message_code'] == 'ERR-5003':
+                    if res_json['messages'][0]['message_code'] == 'ERR-5003':
                         sleep(interval)
                     else:
                         raise GmoCoinException(ret.status_code, 
