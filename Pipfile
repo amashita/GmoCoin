@@ -17,6 +17,7 @@ twine = "*"
 requests = "*"
 marshmallow = "*"
 marshmallow-enum = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"
