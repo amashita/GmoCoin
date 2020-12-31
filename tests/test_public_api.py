@@ -113,4 +113,4 @@ def test_get_historical_data(capfd):
 
     assert type(df) is DataFrame
 
-    print('len:'+len(df))
+    print('len:{}'.format(len(df)))

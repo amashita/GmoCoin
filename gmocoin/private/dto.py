@@ -298,6 +298,149 @@ class GetActiveOrdersResSchema(BaseResponseSchema):
     data = fields.Nested(GetActiveOrdersDataSchema, data_key='data')
 
 
+class LatestExecutionsPagenation:
+    """
+    最新約定一覧ページングデータクラスです。
+    """
+    def __init__(self, current_page: int, count: int) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            current_page:
+                現在のページ番号を設定します。
+            count:
+                データ数を設定します。
+        """
+        self.current_page = current_page
+        self.count = count
+
+
+class LatestExecutionsPagenationSchema(BaseSchema):
+    """
+    最新約定一覧ページングデータスキーマクラスです。
+    """
+    __model__ = LatestExecutionsPagenation
+    current_page = fields.Int(data_key='currentPage')
+    count = fields.Int(data_key='count')
+
+
+class LatestExecution:
+    """
+    最新約定クラスです。
+    """
+    def __init__(self, execution_id: int, order_id: int, symbol: Symbol, side: SalesSide, settle_type: SettleType, 
+                 size: Decimal, price: Decimal, loss_gain: Decimal, fee: Decimal, timestamp: datetime) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            execution_id:
+                約定ID
+            orderId:
+                注文ID
+            symbol:
+                銘柄名: BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            side:
+                売買区分: BUY SELL
+            settle_type:
+                決済区分: OPEN CLOSE
+            size:
+                約定数量
+            price:
+                約定レート
+            loss_gain:
+                決済損益
+            fee:
+                取引手数料
+                ※Takerの場合はプラスの値、Makerの場合はマイナスの値が返ってきます。
+            timestamp:
+                約定日時
+        """
+        self.execution_id = execution_id
+        self.order_id = order_id
+        self.symbol = symbol
+        self.side = side
+        self.settle_type = settle_type
+        self.size = size
+        self.price = price
+        self.loss_gain = loss_gain
+        self.fee = fee
+        self.timestamp = timestamp.astimezone(timezone('Asia/Tokyo'))
+
+
+class LatestExecutionSchema(BaseSchema):
+    """
+    最新約定スキーマクラスです。
+    """
+    __model__ = LatestExecution
+    execution_id = fields.Int(data_key='executionId')
+    order_id = fields.Int(data_key='orderId')
+    symbol = EnumField(Symbol, data_key='symbol')
+    side = EnumField(SalesSide, data_key='side')
+    settle_type = EnumField(SettleType, data_key='settleType')
+    size = fields.Decimal(data_key='size')
+    price = fields.Decimal(data_key='price')
+    loss_gain = fields.Decimal(data_key='lossGain')
+    fee = fields.Decimal(data_key='fee')
+    timestamp = fields.DateTime(format='%Y-%m-%dT%H:%M:%S.%fZ', data_key='timestamp')
+
+
+class GetLatestExecutionsData:
+    """
+    最新約定一覧データクラスです。
+    """
+    def __init__(self, pagination: LatestExecutionsPagenation=None, latest_executions: List[LatestExecution]=None) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            pagination:
+                ページングを設定します。
+            active_orders:
+                最新約定一覧リストを設定します。
+        """
+        self.pagination = pagination
+        self.latest_executions = latest_executions
+
+
+class GetLatestExecutionsDataSchema(BaseSchema):
+    """
+    最新約定一覧データスキーマクラスです。
+    """
+    __model__ = GetLatestExecutionsData
+    pagination = fields.Nested(LatestExecutionsPagenationSchema, data_key='pagination')
+    latest_executions = fields.Nested(LatestExecutionSchema, data_key='list', many=True)
+
+
+class GetLatestExecutionsRes(BaseResponse):
+    """
+    最新約定一覧レスポンスクラスです。
+    """
+    def __init__(self, status: int, responsetime: datetime, data: GetLatestExecutionsData) -> None:
+        """
+        コンストラクタです。
+
+        Args:
+            status:
+                ステータスコードを設定します。
+            responsetime:
+                レスポンスタイムを設定します。
+            data:
+                レスポンスデータを設定します。
+        """
+        super().__init__(status, responsetime)
+        self.data = data
+
+
+class GetLatestExecutionsResSchema(BaseResponseSchema):
+    """
+    最新約定一覧レスポンススキーマクラスです。
+    """
+    __model__ = GetLatestExecutionsRes
+    data = fields.Nested(GetLatestExecutionsDataSchema, data_key='data')
+
+
 class PositionSummary:
     """
     建玉サマリークラスです。

@@ -67,7 +67,7 @@ class Test:
                            side=SalesSide.BUY, 
                            execution_type=ExecutionType.LIMIT,
                            time_in_force=TimeInForce.FAS,
-                           price='1500000',
+                           price=str(TestConst.ORDER_PRICE),
                            size='0.01')
         order_id = res.data
 
@@ -117,6 +117,44 @@ class Test:
 
         client.get_active_orders(symbol=Symbol.BTC)
 
+    def test_get_latest_executions(self):
+        time.sleep(TestConst.API_CALL_INTERVAL)
+        client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
+
+        res = client.get_latest_executions(symbol=Symbol.BTC_JPY)
+
+        assert type(res.status) is int
+        assert type(res.responsetime) is datetime
+        assert type(res.data.pagination.current_page) is int
+        assert type(res.data.pagination.count) is int
+        for o in res.data.latest_executions:
+            assert type(o.execution_id) is int
+            assert type(o.order_id) is int
+            assert type(o.symbol) is Symbol
+            assert type(o.side) is SalesSide
+            assert type(o.settle_type) is SettleType
+            assert type(o.size) is Decimal
+            assert type(o.price) is Decimal
+            assert type(o.loss_gain) is Decimal
+            assert type(o.fee) is Decimal
+            assert type(o.timestamp) is datetime
+
+        print(res.status)
+        print(res.responsetime)
+        print(res.data.pagination.current_page)
+        print(res.data.pagination.count)
+        for o in res.data.latest_executions:
+            print(o.execution_id)
+            print(o.order_id)
+            print(o.symbol)
+            print(o.side)
+            print(o.settle_type)
+            print(o.size)
+            print(o.price)
+            print(o.loss_gain)
+            print(o.fee)
+            print(o.timestamp)
+
     def test_get_position_summary(self):
         time.sleep(TestConst.API_CALL_INTERVAL)
         client = Client(api_key=self._api_conf['API_KEY'], secret_key=self._api_conf['SECRET_KEY'])
@@ -153,7 +191,7 @@ class Test:
                            side=SalesSide.BUY, 
                            execution_type=ExecutionType.LIMIT,
                            time_in_force=TimeInForce.FAS,
-                           price='1500000',
+                           price=str(TestConst.ORDER_PRICE),
                            size='0.01')
         order_id = res.data
 
@@ -165,7 +203,7 @@ class Test:
         print(res.data)
 
         time.sleep(TestConst.API_CALL_INTERVAL)
-        res = client.change_order(res.data, price='1510000', losscut_price='1000000')
+        res = client.change_order(res.data, price=str(TestConst.ORDER_PRICE+10000), losscut_price=str(TestConst.ORDER_LOSSCUT_PRICE))
         assert type(res.status) is int
         assert type(res.responsetime) is datetime
         print(res.status)
@@ -185,7 +223,7 @@ class Test:
                            side=SalesSide.BUY, 
                            execution_type=ExecutionType.LIMIT,
                            time_in_force=TimeInForce.FAS,
-                           price='1500000',
+                           price=str(TestConst.ORDER_PRICE),
                            size='0.01')
 
         assert type(res.status) is int
