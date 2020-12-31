@@ -13,7 +13,7 @@ from ..common.dto import Symbol, SalesSide, ExecutionType, TimeInForce, BaseResp
 from .dto import GetMarginResSchema, GetMarginRes, GetAssetsResSchema, GetAssetsRes,\
     GetActiveOrdersResSchema, GetActiveOrdersRes, GetPositionSummaryResSchema, GetPositionSummaryRes,\
     PostOrderResSchema, PostOrderRes, PostCloseOrderResSchema, PostCloseOrderRes,\
-    PostCloseBulkOrderResSchema, PostCloseBulkOrderRes
+    PostCloseBulkOrderResSchema, PostCloseBulkOrderRes, GetLatestExecutionsResSchema, GetLatestExecutionsRes
 
 
 logger = get_logger()
@@ -96,6 +96,38 @@ class Client:
         """
 
         path = '/v1/activeOrders'
+
+        headers = self._create_header(method='GET', path=path)
+        parameters = {
+            "symbol": symbol.value,
+            "page": page,
+            "count": count
+        }
+
+        return requests.get(GMOConst.END_POINT_PRIVATE + path, headers=headers, params=parameters)
+
+    @log(logger)
+    @post_request(GetLatestExecutionsResSchema)
+    def get_latest_executions(self, symbol:Symbol, page:int=1, count:int=100) -> GetLatestExecutionsRes:
+        """
+        最新約定一覧を取得します。
+        対象: 現物取引、レバレッジ取引
+
+        直近1日分の約定情報を返します。
+
+        Args:
+            symbol:
+                BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            page:
+                取得対象ページ: 指定しない場合は1を指定したとして動作する。
+            count:
+                1ページ当りの取得件数: 指定しない場合は100(最大値)を指定したとして動作する。
+
+        Returns:
+            GetLatestExecutionsRes
+        """
+
+        path = '/v1/latestExecutions'
 
         headers = self._create_header(method='GET', path=path)
         parameters = {

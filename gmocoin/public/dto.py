@@ -125,7 +125,7 @@ class GetTickerRes(BaseResponse):
     """
     銘柄最新レートレスポンスクラスです。
     """
-    def __init__(self, status: int, responsetime: datetime, data: GetTickerData) -> None:
+    def __init__(self, status: int, responsetime: datetime, data: List[GetTickerData]) -> None:
         """
         コンストラクタです。
 
