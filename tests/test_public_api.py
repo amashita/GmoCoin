@@ -4,6 +4,7 @@ from enum import Enum
 import time
 from decimal import Decimal
 from datetime import datetime
+from pandas import DataFrame
 
 from gmocoin.public.api import Client
 from gmocoin.common.dto import Status, Symbol, SalesSide
@@ -104,3 +105,12 @@ def test_get_trades_loop(capfd):
     client = Client()
     for i in range(1,13):
         client.get_trades(Symbol.BTC_JPY, page=i, count=100)
+
+def test_get_historical_data(capfd):
+    time.sleep(TestConst.API_CALL_INTERVAL)
+    client = Client()
+    df = client.get_historical_data(Symbol.BTC_JPY, 3)
+
+    assert type(df) is DataFrame
+
+    print('len:'+len(df))

@@ -1,7 +1,8 @@
 #!python3
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, date, timedelta
+import pandas as pd
 
 from ..common.annotation import post_request
 from ..common.const import GMOConst
@@ -99,3 +100,56 @@ class Client:
             GetTradesRes
         """
         return requests.get(GMOConst.END_POINT_PUBLIC + f'trades?symbol={symbol.value}&page={page}&count={count}')
+
+    @log(logger)
+    def get_historical_data(self, symbol:Symbol, page:int=1, count:int=100) -> GetTradesRes:
+        """
+        指定した銘柄の板情報(snapshot)を取得します。
+
+        Args:
+            symbol:
+                BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            page:
+                取得対象ページ
+                指定しない場合は1を指定したとして動作する。
+            count:
+                1ページ当りの取得件数
+                指定しない場合は100(最大値)を指定したとして動作する。
+
+        Returns:
+            GetTradesRes
+        """
+        return requests.get(GMOConst.END_POINT_PUBLIC + f'trades?symbol={symbol.value}&page={page}&count={count}')
+
+    @log(logger)
+    def get_historical_data(self, symbol:Symbol, past_days: int, base_date:date = None) -> pd.DataFrame:
+        """
+        指定した銘柄の過去取引情報を取得します。
+
+        Args:
+            symbol:
+                BTC ETH BCH LTC XRP BTC_JPY ETH_JPY BCH_JPY LTC_JPY XRP_JPY
+            past_days:
+                過去期間日
+                base_date-past_days　～　base_dateのデータを取得する。
+            base_date:
+                過去基準日
+                指定しない場合は現在日-1日を指定したとして動作する。
+
+        Returns:
+            DataFrame
+        """
+        if base_date == None:
+            base_date = date.today() - timedelta(days=1)
+
+        start_date = base_date - timedelta(days=past_days)
+
+        #差分を使って、スタートの日から現在まで一日ずつ足していく
+        url_list = []
+        for d in range(past_days):
+            day=start_date + timedelta(days=d)
+            # print(day)
+            url = f'https://api.coin.z.com/data/trades/{symbol.value}/{day.year}/{day.month:02}/{day.year}{day.month:02}{day.day:02}_{symbol.value}.csv.gz'
+            url_list.append(url)
+
+        return pd.concat([pd.read_csv(url) for url in url_list], axis=0, sort=True)
