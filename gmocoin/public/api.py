@@ -1,10 +1,12 @@
 #!python3
 import requests
 import json
+from datetime import datetime
 
 from ..common.annotation import post_request
 from ..common.const import GMOConst
 from ..common.logging import get_logger, log
+from ..common.dto import Status
 from .dto import GetStatusResSchema, GetStatusRes, \
     GetTickerResSchema, GetTickerRes, Symbol , \
     GetOrderBooksResSchema, GetOrderBooksRes, \
@@ -31,7 +33,16 @@ class Client:
         Returns:
             GetStatusRes
         """
-        return requests.get(GMOConst.END_POINT_PUBLIC + 'status')
+        ret = requests.get(GMOConst.END_POINT_PUBLIC + 'status')
+
+        res_json = ret.json()
+        if res_json['status'] == 5 and res_json['messages'][0]['message_code'] == 'ERR-5201':
+            # メンテナンス中の場合、メンテナンスレスポンスを返却
+            # {'status': 5, 'messages': [{'message_code': 'ERR-5201', 'message_string': 'MAINTENANCE. Please wait for a while'}]}
+            return GetStatusRes(status=0, responsetime=datetime.now(), 
+                                data=GetStatusData(status=Status.MAINTENANCE))
+
+        return ret
         
     @log(logger)
     @post_request(GetTickerResSchema)

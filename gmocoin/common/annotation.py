@@ -1,6 +1,7 @@
 #!python3
 from functools import wraps
 from time import sleep
+from requests import Response
 
 from .exception import GmoCoinException
 from .dto import ErrorResponseResSchema
@@ -46,6 +47,9 @@ def post_request(Schema, interval: float=0.5, retry_count: int=10):
             for i in range(retry_count):
                 # funcの実行
                 ret = func(*args, **kwargs)
+                if type(ret) != Response:
+                    return ret
+
                 if ret.status_code != 200:
                     raise GmoCoinException(ret.status_code)
 
