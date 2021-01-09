@@ -134,13 +134,13 @@ class Client:
                 base_date-past_days　～　base_dateのデータを取得する。
             base_date:
                 過去基準日
-                指定しない場合は現在日-1日を指定したとして動作する。
+                指定しない場合は現在日を指定したとして動作する。
 
         Returns:
             DataFrame
         """
         if base_date == None:
-            base_date = date.today() - timedelta(days=1)
+            base_date = date.today()
 
         start_date = base_date - timedelta(days=past_days)
 
