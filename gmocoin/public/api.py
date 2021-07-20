@@ -150,6 +150,8 @@ class Client:
             day=start_date + timedelta(days=d)
             # print(day)
             url = f'https://api.coin.z.com/data/trades/{symbol.value}/{day.year}/{day.month:02}/{day.year}{day.month:02}{day.day:02}_{symbol.value}.csv.gz'
-            url_list.append(url)
+            # MEMO: 土日は更新されないようなので、存在する日付だけlistに追加する
+            if requests.get(url).status_code == 200:
+                url_list.append(url)
 
         return pd.concat([pd.read_csv(url) for url in url_list], axis=0, sort=True)

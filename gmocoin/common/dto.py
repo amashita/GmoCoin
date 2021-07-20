@@ -24,6 +24,7 @@ class Symbol(Enum):
     BCH = 'BCH'
     LTC = 'LTC'
     XRP = 'XRP'
+    XEM = 'XEM'
     BTC_JPY = 'BTC_JPY'
     ETH_JPY = 'ETH_JPY'
     BCH_JPY = 'BCH_JPY'
@@ -46,6 +47,10 @@ class AssetSymbol(Enum):
     BAT = 'BAT'
     OMG = 'OMG'
     XTZ = 'XTZ'
+    QTUM = 'QTUM'
+    ENJ = 'ENJ'
+    DOT = 'DOT'
+    ATOM = 'ATOM'
 
 
 class SalesSide(Enum):
@@ -102,6 +107,13 @@ class TimeInForce(Enum):
     FOK = 'FOK'
     SOK = 'SOK'
 
+class MarginCallStatus(Enum):
+    """
+    追証ステータスを示します。
+    """
+    NORMAL = "NORMAL"
+    MARGIN_CALL = "MARGIN_CALL"
+    LOSSCUT = "LOSSCUT"
 
 class BaseSchema(Schema):
     """

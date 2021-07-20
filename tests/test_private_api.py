@@ -125,35 +125,39 @@ class Test:
 
         assert type(res.status) is int
         assert type(res.responsetime) is datetime
-        assert type(res.data.pagination.current_page) is int
-        assert type(res.data.pagination.count) is int
-        for o in res.data.latest_executions:
-            assert type(o.execution_id) is int
-            assert type(o.order_id) is int
-            assert type(o.symbol) is Symbol
-            assert type(o.side) is SalesSide
-            assert type(o.settle_type) is SettleType
-            assert type(o.size) is Decimal
-            assert type(o.price) is Decimal
-            assert type(o.loss_gain) is Decimal
-            assert type(o.fee) is Decimal
-            assert type(o.timestamp) is datetime
 
         print(res.status)
         print(res.responsetime)
-        print(res.data.pagination.current_page)
-        print(res.data.pagination.count)
-        for o in res.data.latest_executions:
-            print(o.execution_id)
-            print(o.order_id)
-            print(o.symbol)
-            print(o.side)
-            print(o.settle_type)
-            print(o.size)
-            print(o.price)
-            print(o.loss_gain)
-            print(o.fee)
-            print(o.timestamp)
+
+        # MEMO: 最新の約定が無い場合、以下の型テストを行わない。
+        if res.data.pagination != None and res.data.latest_executions != None:
+            assert type(res.data.pagination.current_page) is int
+            assert type(res.data.pagination.count) is int
+            for o in res.data.latest_executions:
+                assert type(o.execution_id) is int
+                assert type(o.order_id) is int
+                assert type(o.symbol) is Symbol
+                assert type(o.side) is SalesSide
+                assert type(o.settle_type) is SettleType
+                assert type(o.size) is Decimal
+                assert type(o.price) is Decimal
+                assert type(o.loss_gain) is Decimal
+                assert type(o.fee) is Decimal
+                assert type(o.timestamp) is datetime
+
+            print(res.data.pagination.current_page)
+            print(res.data.pagination.count)
+            for o in res.data.latest_executions:
+                print(o.execution_id)
+                print(o.order_id)
+                print(o.symbol)
+                print(o.side)
+                print(o.settle_type)
+                print(o.size)
+                print(o.price)
+                print(o.loss_gain)
+                print(o.fee)
+                print(o.timestamp)
 
     def test_get_position_summary(self):
         time.sleep(TestConst.API_CALL_INTERVAL)
