@@ -16,7 +16,7 @@ class GetMarginData:
     """
     余力情報データクラスです。
     """
-    def __init__(self, actual_profit_loss: Decimal, available_amount: Decimal, margin: Decimal, margin_call_status: MarginCallStatus, margin_ratio: Decimal, profit_loss: Decimal) -> None:
+    def __init__(self, actual_profit_loss: Decimal, available_amount: Decimal, margin: Decimal, margin_call_status: MarginCallStatus, profit_loss: Decimal, margin_ratio: Decimal = -1) -> None:
         """
         コンストラクタです。
 
