@@ -319,7 +319,7 @@ class Client:
             "timeInForce": time_in_force.value,
             "settlePosition": [
                 {
-                    "positionId": position_size,
+                    "positionId": position_id,
                     "size": position_size
                 }
             ]
